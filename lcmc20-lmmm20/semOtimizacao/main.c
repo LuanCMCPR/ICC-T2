@@ -13,7 +13,7 @@
 int main()
 {
     int degreeN, num_points, sizeLS;
-    double tGeraSL, tSolSL;
+    double tGeraSL, tSolSL, tResSL;
     PointsRange_t *vpr;
     LinearSystem_t *LS;
     Range_t *a, *r;
@@ -57,12 +57,18 @@ int main()
     tSolSL = timestamp() - tSolSL;
     LIKWID_MARKER_STOP("SOLUCAO_SISTEMA");
 
-    /* Faz o calculo do resíduo, imprime coeficientes, resíduo e tempos de geração e solução */  
+    /* Faz o calculo do resíduo, imprime coeficientes, resíduo e tempos de geração e solução */
+    LIKWID_MARKER_START("CALCULO_RESIDUO");
+    tResSL = timestamp();
     r = calculateResidualVector(vpr, a, num_points, sizeLS);
+    tResSL = timestamp() - tResSL;
+    LIKWID_MARKER_STOP("CALCULO_RESIDUO");
+
     printArrayRange(a, sizeLS);
     printArrayRange(r, num_points);
     printf("%1.8e\n", tGeraSL);
     printf("%1.8e\n", tSolSL);
+    printf("%1.8e\n", tResSL);
 
     /* Libera memória alocada*/
     free(vpr);

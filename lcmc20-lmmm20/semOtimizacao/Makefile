@@ -32,7 +32,10 @@ main.o: main.c
 # Remove arquivos objeto, temporários e executável
 clean:
 	@echo "Removendo sujeira..."
-	rm -f ajustePol *.o *~
+	rm -f *.o *~
+
+purge: clean
+	rm -f $(OUT)
 
 # Gera um arquivo compactado com os arquivos necessários para execução do programa
 compact:

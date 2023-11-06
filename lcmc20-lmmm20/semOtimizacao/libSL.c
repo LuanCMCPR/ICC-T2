@@ -80,7 +80,7 @@ LinearSystem_t *allocateLinearSystem(int size)
         num_points: Número de pontos
         sizeLS: Tamanho do Sistema Linear
 */
-LinearSystem_t *createLinearSystem(PointsRange_t *vpr, int num_points, int sizeLS)
+LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points, int sizeLS)
 {
     int i, j, power_x;
     LinearSystem_t *LS;
@@ -310,7 +310,7 @@ Range_t *allocateArrayRange(int size)
         num_points: Número de pontos
         sizeLS: Tamanho do Sistema Linear
 */
-Range_t* calculateResidualVector(PointsRange_t *vpr, Range_t *a, int num_points, int sizeLS)
+Range_t* calculateResidualVector(PointsRange_t *vpr, Range_t *a,long long int num_points, int sizeLS)
 {
     int i,j;
     Range_t *rv;

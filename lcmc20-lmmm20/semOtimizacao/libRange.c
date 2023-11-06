@@ -155,7 +155,7 @@ Range_t divisionRange(Range_t num1, Range_t num2)
         num: Intervalo
         p: Potência que se deseja elevar o intervalo num
 */
-Range_t powerRange(Range_t num, int p)
+Range_t powerRange(Range_t num, long long int p)
 {
     Range_t res;
 
@@ -208,7 +208,7 @@ Range_t powerRange(Range_t num, int p)
     Parametros:
         size: Tamanho da tabela (quantidade de pontos)
 */
-PointsRange_t *allocatePointsRangeArray(int size)
+PointsRange_t *allocatePointsRangeArray(long long int size)
 {
     PointsRange_t *array = (PointsRange_t *)malloc(size * sizeof(PointsRange_t));
 
@@ -225,12 +225,12 @@ PointsRange_t *allocatePointsRangeArray(int size)
     Parametros:
         numPoints: Quantidade de pontos
 */
-PointsRange_t *generatePointsRanges(int numPoints)
+PointsRange_t *generatePointsRanges(long long int numPoints)
 {
     PointsRange_t *vpr = allocatePointsRangeArray(numPoints);
     double x, y;
 
-    for(int i = 0; i < numPoints; i++)
+    for(long long int i = 0; i < numPoints; i++)
     {
         if(scanf("%lf %lf", &x, &y) == 2)
         {
@@ -246,11 +246,11 @@ PointsRange_t *generatePointsRanges(int numPoints)
     Função que imprime o vetor de intervalos de pontos 
     Observação: Não é utilizada, utilizamos apenas para testar o programa
 */
-void printIntervals(PointsRange_t *intervals, int n)
+void printIntervals(PointsRange_t *intervals, long long int n)
 {
-    for(int i = 0; i < n; i++)
+    for(long long int i = 0; i < n; i++)
     {
-        printf("Intervalo %d:\n", i + 1);
+        printf("Intervalo %lld:\n", i + 1);
         printf("x: [%lf, %lf]\n", intervals[i].x.smallest, intervals[i].x.largest);
         printf("y: [%lf, %lf]\n", intervals[i].y.smallest, intervals[i].y.largest);
         printf("\n");
@@ -262,9 +262,9 @@ void printIntervals(PointsRange_t *intervals, int n)
     Parametros:
         array: Vetor de intervalos
 */
-void printArrayRange(Range_t *array, int size)
+void printArrayRange(Range_t *array, long long int size)
 {
-    for(int i = 0; i < size; i++)
+    for(long long int i = 0; i < size; i++)
     {
         printf("[%1.8e,%1.8e] ", array[i].smallest, array[i].largest);
     }

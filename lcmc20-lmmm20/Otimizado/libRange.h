@@ -62,31 +62,31 @@ Range_t divisionRange(Range_t num1, Range_t num2);
         num: Intervalo
         p: Potência que se deseja elevar o intervalo num
 */
-Range_t powerRange(Range_t num, int p);
+Range_t powerRange(Range_t num, long long int p);
 
 /*
     Função que faz a alocação da struct PointsRange_t, que representa a tabela de pontos de intervalos
     Parametros:
         size: Tamanho da tabela (quantidade de pontos)
 */
-PointsRange_t *allocatePointsRangeArray(int num_points);
+PointsRange_t *allocatePointsRangeArray(long long int size);
 
 /*
     Função que gera os intervalos para cada ponto da tabela de pontos de intervalos 
     Parametros:
         numPoints: Quantidade de pontos
 */
-PointsRange_t *generatePointsRanges(int num_points);
+PointsRange_t *generatePointsRanges(long long int numPoints);
 
 /* 
     Função que imprime o vetor de intervalos de pontos 
     Observação: Não é utilizada, utilizamos apenas para testar o programa
 */
-void printIntervals(PointsRange_t *intervals, int n);
+void printIntervals(PointsRange_t *intervals, long long int n);
 
 /*
     Função que imprime vetores de intervalos    
     Parametros:
         array: Vetor de intervalos
 */
-void printArrayRange(Range_t *vector, int size);
+void printArrayRange(Range_t *vector, long long int size);

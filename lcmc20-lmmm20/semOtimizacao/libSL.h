@@ -30,7 +30,7 @@ LinearSystem_t *allocateLinearSystem(int size);
     Parâmetros: Matriz de coeficientes, Vetor de termos independentes, Ordem da matriz.
     Retorno: Sistema Linear construído.  
 */
-LinearSystem_t *createLinearSystem(PointsRange_t *vpr, int num_points,  int sizeLS);
+LinearSystem_t *createLinearSystem(PointsRange_t *vpr,long long int num_points,  int sizeLS);
 
 /*
     Função que imprime o Sistema Linear.
@@ -81,4 +81,4 @@ Range_t* allocateArrayRange(int size);
         num_points: Número de pontos
         sizeLS: Tamanho do Sistema Linear
 */
-Range_t* calculateResidualVector(PointsRange_t *vpr, Range_t *a, int num_points, int sizeLS);
+Range_t* calculateResidualVector(PointsRange_t *vpr, Range_t *a,long long int num_points, int sizeLS);
