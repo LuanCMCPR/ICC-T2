@@ -1,0 +1,52 @@
+Autores:
+    Leonardo Marin Mendes Martin - GRR20205675
+    Luan Carlos Maia Cruz - GRR20203891
+
+USO:
+
+    Executavel:    
+    
+    ./ajustePol
+    O programa irá solicitar ao usuário o grau do polinômio e a quantidade de pontos.
+    Em seguida, o usuário deverá fornecer os pontos, um por linha, no formato "x y".
+    O programa irá calcular o ajuste de curva e imprimir os coeficientes, resíduo, 
+    tempo de geração e tempo de solução.
+    
+    Script:
+    
+    ./script.sh <arquivo de entrada>
+    O script irá executar o programa para o arquivo de entrada fornecido e imprimir os resultados para as métricas
+    FLOPS_DP, AVX_DP e ENERGY [J]
+
+BIBLIOTECAS:
+
+    libSL: 
+   
+    Na biblioteca "libSL", utilizando os conceitos fundamentais apresentados em sala de aula, criamos
+    um sistema linear e aplicamos o Método dos Mínimos Quadrados (MMQ) de maneira otimizada. Em seguida,
+    utilizamos a Eliminação de Gauss com Pivoteamento Parcial para realizar a simplificação do sistema. 
+    Esse processo nos permite reduzir o sistema original a uma forma mais simples, facilitando a resolução. 
+    Posteriormente, aplicamos a técnica de retro-substituição para determinar os valores das incógnitas, 
+    fornecendo assim uma solução para o sistema linear.
+    
+    libRange:
+
+    Na biblioteca libRange, criamos os intervalos necessários e realizamos todas as operações com intervalos, 
+    incluindo soma, subtração, multiplicação e divisão. Além disso, implementamos a potenciação de intervalos
+    seguindo as regras especificadas no enunciado do trabalho. A biblioteca também inclui funções para imprimir intervalos.
+
+    main:
+    
+    No programa principal, realizamos a leitura do grau do polinômio e a quantidade de pontos. Em seguida, efetuamos
+    todas as operações necessárias por meio de chamadas de funções, abrangendo desde a geração de intervalos para os
+    pontos fornecidos até o cálculo do resíduo.
+
+CÓDIGOS DE ERRO:
+
+    1 - Erro no número de pontos ou no grau do polinômio, que deve ser maior que zero.
+    2 - Erro ao ler o grau e o número de pontos fornecidos.
+    3 - Erro ao alocar o sistema linear necessário.
+    4 - Erro ao alocar a matriz de coeficientes.
+    5 - Erro ao alocar a linha x da matriz de coeficientes.
+    6 - Erro ao alocar vetor de intervalos: vetor de termos independentes, de coeficientes ou vetor de resíduos
+

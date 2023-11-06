@@ -1,0 +1,20 @@
+OTIMIZAÇÃO A SEREM REALIZADAS
+   1. Mudar forma de implementação da matriz, fazer uma alocação
+       Motivo: Alocação e Desalocação consome tempo, e também verificar se em algum acesso por ocorrer um stride
+   2. Verificar a estruturas realizadas se devemos utilizar um Struct of Arrays ou um Array of Structs
+   3. Usar memset() para inicializar os coeficientes
+   4. Verificar se existem subexpressões que podem ser eliminadas
+   4. Ver os desvios que podem ser evitados
+   5. Ver os trechos de código que podem ser vetorizados
+   6. Indicar em quais trechos não vai existir aliasing
+
+
+   OTIMIZAÇÕES REALIZADAS:
+
+    Em libSL.h:
+        1. Removida a Struct LinearSystem_t
+        2. Funções que retornavam LinearSystem_t, passaram a ser void
+        3. Parametros das funções que eram do tipo LinearSystem_t, foram alterados para o Range_t
+    Em libSL.C:
+        1. Função LinearSystem_t *allocateLinearSystem(int size) -> REMOVIDA. A matriz sera alocada como o vetor. Já existe a função Range_t *allocateArrayRange(int size)
+

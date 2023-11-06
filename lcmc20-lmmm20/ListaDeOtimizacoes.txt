@@ -1,6 +1,0 @@
-OTIMIZAÇÃO A SEREM REALIZADAS
-    1. Mudar forma de implementação da matriz, fazer uma alocação
-       Motivo: Alocação e Desalocação consome tempo, e também verificar se em algum acesso por ocorrer um stride
-    2. Verificar a estruturas realizadas se devemos utilizar um Struct of Arrays ou um Array of Structs
-    3. Usar memset() para inicializar os coeficientes
-    4. Verificar se existem subexpressões que podem ser eliminadas

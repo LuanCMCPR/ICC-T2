@@ -1,0 +1,16 @@
+
+Em libSL.c:
+    1.LinearSystem_t *allocateLinearSystem(int size):
+        1.1 Alterado a forma como a matriz é alocada, agora é alocada como vetor
+        1.2 Alterado a maneira como a matriz é inicializada, utilizamos memset para inicializar a matriz e o vetor de termos independentes
+
+    2.Range_t *allocateArrayRange(int size)
+        2.1 Apenas mudando a forma como é testada a alocação
+
+    3.void freeLinearSystem(LinearSystem_t *LS, int size):
+        3.1 Alterado a forma como a matriz é desalocada, agora é desalocada como vetor
+
+Em libRange.c:
+
+    1. Remoção das funções indLargest(double num) e indSmallest(double num)
+    
