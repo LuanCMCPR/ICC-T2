@@ -66,6 +66,8 @@ Range_t addRange(Range_t num1, Range_t num2)
     return res;
 }
 
+
+
 /*  Função que faz a subtração de dois intervalos.
     [a,b] - [c,d] = [a-d, b-c] 
     Parametros:
