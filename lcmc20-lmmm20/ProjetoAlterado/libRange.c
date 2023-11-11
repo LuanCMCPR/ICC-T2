@@ -15,12 +15,13 @@
 #include "libRange.h"
 
 /* Função genérica que aloca a estrutura e dois vetores de pontos com os menores valores e maiores valores dos intervalos. */
-RangeVector *allocateArraysOfRangeVector(int size) 
+RangeVector *allocateArraysOfRangeVector(long long int size) 
 {
     // Aloca dinamicamente a estrutura RangeVector
     RangeVector *newRangeVector = (RangeVector *)malloc(sizeof(RangeVector));
 
-    if (newRangeVector == NULL) {
+    if (newRangeVector == NULL) 
+    {
         printf("Memory allocation failed\n");
         exit(1); 
     }
@@ -42,7 +43,7 @@ RangeVector *allocateArraysOfRangeVector(int size)
 
 /* 
    Eliminamos a função createRange(), findSmallest() e findLargest  que chamavamos para definir os valores menores
-   e maiores dos intervalos. Anteriormente tinhamos um vetor de structs de intervalos, ou seja, chamavamos o nextafter
+   e maiores dos intervalos. Anteriormente tinhamos um vetor de structs de intervalos, ou seja, chamavamos nextafter()
    para calcular o próximo valor representável e inseriamos em:
    vpr[i].x.smallest/largest e vpr[i].y.smallest/largest
 
@@ -50,21 +51,33 @@ RangeVector *allocateArraysOfRangeVector(int size)
    de um array de intervalos.
 */
 void generatePointsRanges(long long int numPoints, RangeVector *x, RangeVector *y)
-{
-    x = allocateArray(numPoints);
-    y = allocateArray(numPoints);
-    
+{    
     double xi, yi;
 
+    // Define o intervalos dos menores e maiores valores e insere os mesmo em vetores específicos
     for(long long int i = 0; i < numPoints; i++)
     {
-        scanf("%lf %lf", &xi, &yi);
+        if (scanf("%lf %lf", &xi, &yi) != 2) 
+        {
+            fprintf(stderr, "Erro na leitura dos valores.\n");
+            exit(EXIT_FAILURE);
+        }
         
         x->s[i] = nextafter(xi, -INFINITY);
         x->l[i] = nextafter(xi, INFINITY);
         y->s[i] = nextafter(yi, -INFINITY);
         y->l[i] = nextafter(yi, INFINITY);
     }
+}
+
+// Função para imprimir os valores dos vetores da estrutura RangeVector
+void printRangeVectorValues(RangeVector *rv, long long int size)
+{
+    fprintf(stdout, "Vector values:\n");
+    for (int i = 0; i < size; ++i) {
+        fprintf(stdout, "[%1.8e,%1.8e] ", rv->s[i], rv->l[i]);
+    }
+    printf("\n");
 }
 
 void freeRangeVector(RangeVector *rangeVector) 

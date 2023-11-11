@@ -12,20 +12,22 @@
 
 int main()
 {
-    long long int num_points;
+    long long int numPoints;
     short int degreeN, sizeLS; // int8_t ??
-    RangeVector x,y,sl,b;
+    RangeVector *x,*y; //*ls,*b;
 
     LIKWID_MARKER_INIT;
     /* Le o grau do poliônimo, guarda tamanho do sistema linear, 
        Le a quantidade de pontos e gerar a tabela de intervalos 
     */
-    if((scanf("%d", &degreeN) == 1) && (scanf("%d", &num_points) == 1))
+    if((scanf("%hd", &degreeN) == 1) && (scanf("%lld", &numPoints) == 1))
     {
-        if((degreeN > 0) && (num_points > 0))
+        if((degreeN > 0) && (numPoints > 0))
         {
             sizeLS = degreeN + 1;
-            x = generatePointsRanges(num_points); 
+            x = allocateArraysOfRangeVector(numPoints);
+            y = allocateArraysOfRangeVector(numPoints);
+            generatePointsRanges(numPoints, x, y); 
         }
         else
         {
@@ -39,5 +41,10 @@ int main()
         exit(2);
     }
 
+    printRangeVectorValues(x, numPoints);
+    printRangeVectorValues(y, numPoints);
 
+    freeRangeVector(x);
+    freeRangeVector(y);
+    return 0;
 }

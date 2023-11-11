@@ -1,0 +1,23 @@
+Dúvidas para tirar com o professor Guilheme 
+
+Principais:
+
+1. 
+Pq o os intervalos estão ficando iguais? algo de errado com nextafter()?
+
+------------//------------//------------//------------//------------
+
+Outras:
+
+1. 
+Podemos alterar as funções, os retornos, etc?? 
+Quão flexível o trabalho é??
+
+2. 
+o free é chamado várias vezes para as diversas structs of arrays.
+podemos chamar só uma função que libera todos? já que o objetivo
+é otimizar o máximo possível, e não deixar as funções super generálizáveis.
+
+3. 
+pode deixar o scanf sem verificação?
+de qualquer forma, ta dando warning sem a verificação.
