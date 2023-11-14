@@ -100,6 +100,9 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
             res = powerRange(vpr[j].x, i);
             LS->cm[0][i].smallest += res.smallest; /* To do: usar addRange() */
             LS->cm[0][i].largest += res.largest;
+
+            // Comentário:
+            // Aqui usamos apenas valores de x para definir os valores dos coeficentes (intervalos) do SL.
         }
     }
 
@@ -112,6 +115,9 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
         /* To do: usar addRange() */
         LS->vit[0].smallest += vpr[i].y.smallest; 
         LS->vit[0].largest += vpr[i].y.largest;
+
+        // Comentário:
+        // Aqui usamos apenas os valores de y para definir  valor do coeficiente (intervalo) do SL.
     }
 
     /* Cálculo dos coeficientes das demais linhas */
@@ -127,7 +133,11 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
 
         LS->cm[i][sizeLS-1].smallest = 0.0;
         LS->cm[i][sizeLS-1].largest = 0.0;
-        
+
+        // Comentário:
+        // Até aqui não são usados os valores de X e Y. 
+        // Faz sentido vetorizar esta matriz? 
+
         /* Cálcula o coeficiente do Vetor de Termos Independetes e o último coeficiente da equação */
         for (j = 0; j < num_points; j++)
         {
@@ -136,13 +146,21 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
             LS->cm[i][sizeLS-1].smallest += res.smallest;
             LS->cm[i][sizeLS-1].largest += res.largest;
 
+            // Comentário
+            // No bloco acima são usados somente valores de x
+
             /* Calcula o coeficiente do Vetor de Termos Independentes */
             res = powerRange(vpr[j].x, i); // x[j]^i com i = linha
             Range_t mult = timeRange(vpr[j].y, res); // multiplica y[i] com x[j]^i
             LS->vit[i].smallest += mult.smallest;
             LS->vit[i].largest += mult.largest;
+
+            // Comentário
+            // Neste bloco os valores são usados em conjuntos já que yi, multiplica xi^k
         }
         power_x++;
+
+        
     }
 
     return LS;
@@ -260,22 +278,22 @@ void classicEliminationWithPivot(LinearSystem_t *LS, unsigned int n)
         x: Vetor de soluções
         n: Ordem da matriz
 */ 
-void retroSubstitution(LinearSystem_t *LS, Range_t *x, int n)
+void retroSubstitution(LinearSystem_t *LS, Range_t *a, int n)
 {
     /* Começa na última linha */    
     for(int i = n-1; i >= 0; --i)
     {
         /* Atribui o valor da solução*/
-        x[i] = LS->vit[i];
+        a[i] = LS->vit[i];
 
         /* Vai para a posição de um indíce acima e subtrai
          * os valores já calculados */
         for(int j = i+1; j < n; ++j)
-            x[i] = subtractRange(x[i], timeRange(LS->cm[i][j],x[j]));
+            a[i] = subtractRange(a[i], timeRange(LS->cm[i][j],a[j]));
 
         /* Divide pelo coeficiente*/
         // if( (LS->cm[i][i].smallest != 0.0) && (LS->cm[i][i].largest != 0.0)) // Correção 2
-            x[i] = divisionRange(x[i], LS->cm[i][i]);
+        a[i] = divisionRange(a[i], LS->cm[i][i]);
     }
 }
 
@@ -327,6 +345,10 @@ Range_t* calculateResidualVector(PointsRange_t *vpr, Range_t *a,long long int nu
         {
             res = timeRange(a[j], powerRange(vpr[i].x, j)); //  multiplica coef a com xi^j
             fx = addRange(fx, res); // acumulação do polinômio f(x)
+
+            // Comentário:
+            // Aqui a[j]==[a,b] * [c,d]==(xi^j)
+            // fx += [a,b]*[c,d] (multiplicação do intervalos)
         }
         rv[i] = subtractRange(vpr[i].y, fx); // realiza a subtração
     }
