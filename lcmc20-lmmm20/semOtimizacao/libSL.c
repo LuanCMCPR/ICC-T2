@@ -187,6 +187,10 @@ void swapLines(Range_t **cm, Range_t *vit, unsigned int a, unsigned int b)
     Range_t it = vit[a];
     vit[a] = vit[b];
     vit[b] = it;
+
+    // Comentário:
+    // Aqui é feita a troca de linhas da matriz de coeficientes e do vetor de termos independentes.
+    // Não tem muito a se alterar aqui, pois é uma função simples
 }
 
 /*
@@ -216,6 +220,10 @@ unsigned int findMaxPivot(Range_t **cm, unsigned int l, unsigned int n)
 
     /* Retorna em qual linha está o pivo */
     return pivot;
+
+    // Comentário:
+    // Aqui é feita a busca pelo maior elemento da coluna, para realizar o pivoteamento parcial.
+    // Não tem muito a se alterar aqui, pois é uma função simples.
 }
 
 /*
@@ -234,6 +242,12 @@ void classicEliminationWithPivot(LinearSystem_t *LS, unsigned int n)
         if( i != lPivot )
             swapLines(LS->cm,LS->vit,i,lPivot);
         
+
+        // Comentário:
+        // Aqui é feito o pivoteamento parcial, ou seja, a busca pelo maior elemento da coluna e a troca caso seja necessária
+        // Talvez utilizar inline pode ser uma opção para evitar a chamada sucessiva das funções findMaxPivot e swapLines.
+        // Não tem muito a se alterar aqui, pois é um processo que necessita ser feito para a eliminação gaussiana ser mais precisa no resultado.
+
         /* Vai para a próxima linha */
         for(int k = i+1; k < n; ++k)
         {
@@ -242,13 +256,28 @@ void classicEliminationWithPivot(LinearSystem_t *LS, unsigned int n)
             /* Para garantir que o elemento abaixo do pivo será zero */
             LS->cm[k][i].smallest = 0.0;
             LS->cm[k][i].largest = 0.0;
+
+            // Comentário:
+            // Neste laço é feito o cálculo do multiplicador e depois a subtração dos elementos da linha atual com a linha do pivo.
+            // Os elementos abaixo do pivo são zerados, pois o pivo é o maior elemento da coluna.
+            // Talvez utilizar inline para a função divisionRange pode ser uma opção para evitar a chamada da função sucessivamente.
         
             /* Subtrai de cada elemento da equação a multiplicação
              * desde elemento com o multiplicador calculado */
             for(int j = i+1; j < n; ++j)
                 LS->cm[k][j] = subtractRange(LS->cm[k][j], timeRange(m,LS->cm[i][j]));
             
+            // Comentário:
+            // Neste laço é feita a subtração dos elementos da linha atual com a linha do pivo.
+            // Talvez utilizar inline para as funções subtractRange e time range pode ser uma opção para evitar a chamada da função sucessivamente.
+            // Aqui podemos fazer uso de vetorização ( unroll + jam com o laço de cima)
+
             LS->vit[k] = subtractRange(LS->vit[k], timeRange(m,LS->vit[i]));
+
+            // Comentário:
+            // Aqui é feita a subtração do elemento do vetor de termos independentes da linha atual com o da linha do pivo.
+            // É possível utilizar inline para as funções subtractRange e time range pode ser uma opção para evitar a chamada da função sucessivamente.
+            // Aqui podemos fazer uso de vetorização ( unroll + jam usando o primeiro laço)
         }
     }
 }
@@ -277,6 +306,11 @@ void retroSubstitution(LinearSystem_t *LS, Range_t *x, int n)
         // if( (LS->cm[i][i].smallest != 0.0) && (LS->cm[i][i].largest != 0.0)) // Correção 2
             x[i] = divisionRange(x[i], LS->cm[i][i]);
     }
+
+    // Comentário:
+    // Aqui é feita a retrosubstituição, ou seja, a resolução do sistema triangular superior.
+    // Talvez utilizar inline para as funções divisionRange, subtractRange e timeRange pode ser uma opção para evitar a chamada da função sucessivamente.
+    // Aqui podemos fazer uso de vetorização ( unroll + jam )
 }
 
 
