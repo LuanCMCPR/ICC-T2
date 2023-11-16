@@ -8,7 +8,6 @@
 #include "libSL.h"
 #include <stdlib.h>
 #include <likwid.h>
-#include <likwid-marker.h>
 
 int main()
 {
@@ -49,32 +48,40 @@ int main()
     LIKWID_MARKER_STOP("GERANDO_SISTEMA");
     
     /* Resolve o sistema linear */
-    a = allocateArrayRange(sizeLS);
+    // a = allocateArrayRange(sizeLS);
     LIKWID_MARKER_START("SOLUCAO_SISTEMA");
     tSolSL = timestamp();
-    classicEliminationWithPivot(LS, sizeLS);
-    retroSubstitution(LS, a, sizeLS);
+    // classicEliminationWithPivot(LS, sizeLS);
+    // retroSubstitution(LS, a, sizeLS);
     tSolSL = timestamp() - tSolSL;
     LIKWID_MARKER_STOP("SOLUCAO_SISTEMA");
 
     /* Faz o calculo do resíduo, imprime coeficientes, resíduo e tempos de geração e solução */
     LIKWID_MARKER_START("CALCULO_RESIDUO");
     tResSL = timestamp();
-    r = calculateResidualVector(vpr, a, num_points, sizeLS);
+    // r = calculateResidualVector(vpr, a, num_points, sizeLS);
     tResSL = timestamp() - tResSL;
     LIKWID_MARKER_STOP("CALCULO_RESIDUO");
 
-    printArrayRange(a, sizeLS);
-    printArrayRange(r, num_points);
+    #ifdef RESULT
+    // printArrayRange(a, sizeLS);
+    #endif
+    
+    #ifdef RESIDUAL
+    // printArrayRange(r, num_points);
+    #endif
+
+    #ifdef TIME
     printf("%1.8e\n", tGeraSL);
     printf("%1.8e\n", tSolSL);
     printf("%1.8e\n", tResSL);
-
+    #endif
+    
     /* Libera memória alocada*/
     free(vpr);
-    free(a);
-    free(r);
-    freeLinearSystem(LS, sizeLS);
+    // free(a);
+    // free(r);
+    freeLinearSystem(LS);
 
     LIKWID_MARKER_CLOSE;
     return 0;

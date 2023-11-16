@@ -7,7 +7,7 @@
 
 if [ $# -ne 1 ]
 then
-	echo "Uso: ./comparaTodas <ponto>"
+	echo "Uso: ./comparaTodas <entrada>"
 	exit 1
 fi
 
@@ -16,35 +16,39 @@ CORE=3
 P=$1
 D1="semOtimizacao"
 D2="Otimizado"
-EX1="matmult"
-EX2="matmultOtimizado"
+EX1="ajustePol"
+EX2="ajustePolOtimizado"
 
 
 echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_governor
 
 	
-	make -sBC $D1
+	make time -sBC $D1
 	cp "$D1/$EX1" .
 
-	make -sBC $D2
+	make time -sBC $D2
 	cp "$D2/$EX2" .
 
-	T1=$("./$EX1" $P)
-	T2=$("./$EX2" $P)
+	T1=$("./$EX1" < $P)
+	T2=$("./$EX2" < $P)
 
 	echo -e "TEMPO"
 	echo $D1
 	echo -n $T1 | awk '{print $1}'
 	echo -n $T1 | awk '{print $2}'
+	echo -n $T1 | awk '{print $3}'
 
 	echo $D2
 	echo -n $T2 | awk '{print $1}'
 	echo -n $T2 | awk '{print $2}'
+	echo -n $T2 | awk '{print $3}'
 
-	make -sB CFLAGS="-I$LIKWID_INCLUDE -DLIKWID_PERFMON" -C $D1
+	# make -sB CFLAGS="-I$LIKWID_INCLUDE -DLIKWID_PERFMON" -C $D1
+	make pessoal -sBC $D1
 	cp "$D1/$EX1" .
 
-	make -sB CFLAGS="-I$LIKWID_INCLUDE -DLIKWID_PERFMON" -C $D2
+	# make -sB CFLAGS="-I$LIKWID_INCLUDE -DLIKWID_PERFMON" -C $D2
+	make pessoal -sBC $D2
 	cp "$D2/$EX2" .
 
 
@@ -56,7 +60,7 @@ echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_gover
 	    for i in {1..2}
 		do  
 			echo ${D}
-			likwid-perfctr -C $CORE -g $M -m -o "$M.csv" $EX $P > /dev/null
+			likwid-perfctr -C $CORE -g $M -m -o "$M.csv" $EX < $P > /dev/null
 
 			# Separa os dados para o group FLOPS_DP	
     		if [ "$M" == "FLOPS_DP" ]	
@@ -66,15 +70,17 @@ echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_gover
 				echo -n $AUX | awk '{print $2}'
 				echo -n $AUX | awk '{print $3}' | tr '\n' ' '
 				echo -n $AUX | awk '{print $4}'
+				echo -n $AUX | awk '{print $5}' | tr '\n' ' '
+				echo -n $AUX | awk '{print $6}'
     		fi
 
     		# Separa os dados para o group ENERGY
-    		if [ "$M" == "ENERGY" ]
-    		then
-				AUX=$(grep -i "ENERGY \[J\]" "$M.csv" | awk -F, '{print $2}')
-        		echo -n $AUX | awk '{print $1}'
-				echo -n $AUX | awk '{print $2}'  
-    		fi		
+    		# if [ "$M" == "ENERGY" ]
+    		# then
+			# 	AUX=$(grep -i "ENERGY \[J\]" "$M.csv" | awk -F, '{print $2}')
+        	# 	echo -n $AUX | awk '{print $1}'
+			# 	echo -n $AUX | awk '{print $2}'  
+    		# fi		
 
 			# Separa os dados para o group L3
     		if [ "$M" == "L3" ]
@@ -82,6 +88,7 @@ echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_gover
 				AUX=$(grep -i "L3 bandwidth" "$M.csv" | awk -F, '{print $2}')
 				echo -n $AUX | awk '{print $1}'
 				echo -n $AUX | awk '{print $2}'
+				echo -n $AUX | awk '{print $3}'
 	   		fi		
 
 			# Separa os dados para o group L2CACHE
@@ -90,6 +97,7 @@ echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_gover
 				AUX=$(grep -i "L2 miss ratio" "$M.csv" | awk -F, '{print $2}')
 				echo -n $AUX | awk '{print $1}'
 				echo -n $AUX | awk '{print $2}'
+				echo -n $AUX | awk '{print $3}'
 	   		fi
 
 			D=$D2

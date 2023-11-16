@@ -128,7 +128,7 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
         LS->cm[i][sizeLS-1].smallest = 0.0;
         LS->cm[i][sizeLS-1].largest = 0.0;
         
-        /* Cálcula o coeficiente do Vetor de Termos Independetes e o último coeficiente da equação */
+        /* Cálcula o coeficiente do Vetor de Termos Independentes e o último coeficiente da equação */
         for (j = 0; j < num_points; j++)
         {
             /* Calcula o coeficiente de xn do Sistema Linear */
@@ -144,6 +144,8 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
         }
         power_x++;
     }
+
+    printLinearSystem(LS, sizeLS);
 
     return LS;
 }

@@ -21,3 +21,10 @@ podemos chamar só uma função que libera todos? já que o objetivo
 3. 
 pode deixar o scanf sem verificação?
 de qualquer forma, ta dando warning sem a verificação.
+
+4.
+    res = powerRange(vpr->x[j], i)
+O vetor x é carregado inteiramente para a cache ou memória quando a Soa é chamada ?
+
+5.
+    otimizar para um sistema linear de tamanho 4 ou deixar genérico ?

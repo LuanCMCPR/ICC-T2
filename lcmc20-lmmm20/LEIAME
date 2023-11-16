@@ -12,11 +12,43 @@ USO:
     O programa irá calcular o ajuste de curva e imprimir os coeficientes, resíduo, 
     tempo de geração e tempo de solução.
     
-    Script:
+    per:
     
     ./script.sh <arquivo de entrada>
     O script irá executar o programa para o arquivo de entrada fornecido e imprimir os resultados para as métricas
     FLOPS_DP, AVX_DP e ENERGY [J]
+
+SCRIPTS:
+
+    compara.sh:
+    USO: ./compara <métrica> <entrada>
+    Faz a comparação da versão otimizada com a versão não otitmizada da métrica cedida na linha de comando de acordo também com a entrada informada.
+
+    comparaTodas.sh:
+    USO: ./comparaTodas <entrada>
+    Faz a comparação da versão otimizada com a versão não otitmizada de todas as métricas de acordo com a entrada informada.
+
+    perfctr_pontos.sh:
+    USO: ./perfect_pontos.sh <executavel> <diretorio de entradas> <diretorio de saida>
+    EXECUTAVEL: ./ajustePol ou ./ajustePolOtimizado
+    Faz a geração das tabelas de pontos x, y para cada métrica
+
+    gerarGraficos.sh:
+    USO: ./geraGraficos.sh <diretorio_de_entrada_pontos_nao_otimizado > <diretorio_de_entrada_pontos_otimizados> <diretorio_salvar_gráficos>
+    Gera os gráficos de acordo com as tabelas fornecidas, necessita do script plotaGrafico.gp para funcionar corretamente
+
+    geraEntradas.sh:
+    USO: ./geraEntradas.sh <diretorio de saida>
+    Gera K entradas, onde K é o número de entradas que devem ser geradas. Necesita de gera_entrada para funcionar corretamente 
+
+    plotaGrafico.gp:
+    USO: gnuplot -c plotarGrafico.gp <arquivo1> <arquivo2> <titulo do grafico> <nome_do_arquivo> <unidade eixo y> <metrica>
+    Plota um gráfico comparando os pontos não otimizados com os pontos otimizados 
+
+    testarDiff.sh:
+    USO: ./testarDiff.sh
+    Testa se todas as saídas iguais para a versão otimizada e não otimizada
+
 
 BIBLIOTECAS:
 
@@ -40,6 +72,19 @@ BIBLIOTECAS:
     No programa principal, realizamos a leitura do grau do polinômio e a quantidade de pontos. Em seguida, efetuamos
     todas as operações necessárias por meio de chamadas de funções, abrangendo desde a geração de intervalos para os
     pontos fornecidos até o cálculo do resíduo.
+
+
+DIRETÓRIO E ARQUIVOS:
+
+    Otimizado: Diretório do programa otimizado
+
+    semOtimizacao: Diretório do programa sem otimização
+
+    Entradas: Diretório com as entradas geradas pelo script geraEntradas.sh
+
+    Makefile: É um Makefile para fazer o gerenciamento e facilitar testes do programa
+              Existem observações sobre cada regra criada
+
 
 CÓDIGOS DE ERRO:
 

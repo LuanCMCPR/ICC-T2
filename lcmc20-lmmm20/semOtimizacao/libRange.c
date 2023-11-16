@@ -241,6 +241,8 @@ PointsRange_t *generatePointsRanges(long long int numPoints)
         }
     }
     
+
+
     return vpr;
 }
 

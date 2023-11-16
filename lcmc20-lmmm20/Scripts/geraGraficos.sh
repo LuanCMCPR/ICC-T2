@@ -20,27 +20,36 @@ OUTPUT_DIR=$3
 mkdir -p $OUTPUT_DIR
 
 # Metrica e Unidades
-METRICAS=("TEMPO" "L3" "L2CACHE" "ENERGY" "FLOPS DP")
-UNIDADES=("ms" "Mbytes/s" "Miss ratio" "Joules" "Mflops/s")
+METRICAS=("TEMPO" "L3" "L2CACHE" "FLOPS DP")
+UNIDADES=("ms" "Mbytes/s" "Miss ratio" "Mflops/s")
 TAM=${#METRICAS[@]}
 
 # Arquivos de entrada
-ARQMULTMAT=("$IN_NOT_OPT/multmatMatTEMPO.dat" "$IN_NOT_OPT/multmatMatL3.dat" "$IN_NOT_OPT/multmatMatL2CACHE.dat" "$IN_NOT_OPT/multmatMatENERGY.dat" "$IN_NOT_OPT/multmatMatFLOPS_DP.dat")
-ARQMULTVET=("$IN_NOT_OPT/multmatVetTEMPO.dat" "$IN_NOT_OPT/multmatVetL3.dat" "$IN_NOT_OPT/multmatVetL2CACHE.dat" "$IN_NOT_OPT/multmatVetENERGY.dat" "$IN_NOT_OPT/multmatVetFLOPS_DP.dat") 
-ARQMULTMAT_OTZ=("$IN_OPT/multmatMatOTZTEMPO.dat" "$IN_OPT/multmatMatOTZL3.dat" "$IN_OPT/multmatMatOTZL2CACHE.dat" "$IN_OPT/multmatMatOTZENERGY.dat" "$IN_OPT/multmatMatOTZFLOPS_DP.dat")
-ARQMULTVET_OTZ=("$IN_OPT/multmatVetOTZTEMPO.dat" "$IN_OPT/multmatVetOTZL3.dat" "$IN_OPT/multmatVetOTZL2CACHE.dat" "$IN_OPT/multmatVetOTZENERGY.dat" "$IN_OPT/multmatVetOTZFLOPS_DP.dat") 
+GERALSL=("$IN_NOT_OPT/geraSL_TEMPO.dat" "$IN_NOT_OPT/geraSL_L3.dat" "$IN_NOT_OPT/geraSL_L2CACHE.dat" "$IN_NOT_OPT/geraSL_FLOPS_DP.dat")
+SOLUCAOSL=("$IN_NOT_OPT/solucaoSL_TEMPO.dat" "$IN_NOT_OPT/solucaoSL_FLOPS_DP.dat")
+RESIDUOSL=("$IN_NOT_OPT/residuoSL_TEMPO.dat" "$IN_NOT_OPT/residuoSL_L3.dat" "$IN_NOT_OPT/residuoSL_L2CACHE.dat" "$IN_NOT_OPT/residuoSL_FLOPS_DP.dat")
+GERALSL_OTZ=("$IN_OPT/geraSL_OTZTEMPO.dat" "$IN_OPT/geraSL_OTZL3.dat" "$IN_OPT/geraSL_OTZL2CACHE.dat" "$IN_OPT/geraSL_OTZFLOPS_DP.dat")
+SOLUCAOSL_OTZ=("$IN_OPT/solucaoSL_OTZTEMPO.dat" "$IN_OPT/solucaoSL_OTZFLOPS_DP.dat")
+RESIDUOSL_OTZ=("$IN_NOT_OPT/residuoSL_OTZTEMPO.dat" "$IN_NOT_OPT/residuoSL_OTZL3.dat" "$IN_NOT_OPT/residuoSL_OTZL2CACHE.dat" "$IN_NOT_OPT/residuoSL_OTZFLOPS_DP.dat") 
 
 # Iteração sobre os pares de arquivos 
 for ((i=0; i < ${TAM}; i++))
 do
     K=${METRICAS[i]}
     U=${UNIDADES[i]}
-    NOME1="COMPARACAO-MAT-${K}"
-    NOME2="COMPARACAO-VET-${K}"
+    NOME1="COMPARACAO-GERACAO-${K}"
+    NOME2="COMPARACAO-SOLUCAO-${K}"
+    NOME3="COMPARACAO-RESIDUO-${K}"
 
     # Executa o script Gnuplot para o par de arquivos
-    gnuplot -c plotarGrafico.gp "${ARQMULTMAT[i]}" "${ARQMULTMAT_OTZ[i]}" "MATRIZ X MATRIZ - $K" "$NOME1.png" "$U" "$K"
-    gnuplot -c plotarGrafico.gp "${ARQMULTVET[i]}" "${ARQMULTVET_OTZ[i]}" "MATRIZ X VETOR - $K" "$NOME2.png" "$U" "$K"
+    gnuplot -c plotarGrafico.gp "${GERALSL[i]}" "${GERALSL_OTZ[i]}" "GERACAO - $K" "$NOME1" "$U" "$K"
+    if [ "$K" == "TEMPO" ]; then
+        gnuplot -c plotarGrafico.gp "${SOLUCAOSL[0]}" "${SOLUCAOSL_OTZ[0]}" "SOLUCAO - $K" "$NOME2" "$U" "$K"
+    fi
+    if [ "$K" == "FLOPS DP" ]; then
+        gnuplot -c plotarGrafico.gp "${SOLUCAOSL[1]}" "${SOLUCAOSL_OTZ[1]}" "SOLUCAO - $K" "$NOME2" "$U" "$K"
+    fi
+    gnuplot -c plotarGrafico.gp "${RESIDUOSL[i]}" "${RESIDUOSL_OTZ[i]}" "RESIDUO - $K" "$NOME3" "$U" "$K"
 done    
 
 mv *.png $OUTPUT_DIR

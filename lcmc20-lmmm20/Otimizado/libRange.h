@@ -13,10 +13,11 @@ typedef struct
 } Range_t;
 
 /* Struct que representa a tabela de pontos de Intervalos */
+/* OTIMIZAÇÃO: Mudança de um AoS para uma SoA */
 typedef struct
 {
-    Range_t x;  /* Intervalo que representa x */
-    Range_t y; /* Intervalo que representa y */
+    Range_t *x;  /* Intervalo que representa x */
+    Range_t *y; /* Intervalo que representa y */
 } PointsRange_t;
 
 

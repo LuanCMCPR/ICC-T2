@@ -5,20 +5,20 @@
 
 # Uso: ./testarDiff.sh
 
-EX1="matmult"
-EX2="matmultOtimizado"
+EX1="ajustePol"
+EX2="ajustePolOtimizado"
 D1="semOtimizacao"
 D2="Otimizado"
 CORE=3
 
 
-PONTOS="64 100 128 200 256 512 600 900 1024 2000 2048 3000 4000"
+PONTOS="64 100 128 200 256 512 600 900 1024 2000 3000 4096 6000 7000 10000 50000 $((10**5)) $((10**6)) $((10**7)) $((10**8))"
 
 
-make -BC $D1
+make debug -sBC $D1
 cp "$D1/$EX1" ./
 
-make -BC $D2
+make debug -sBC $D2
 cp "$D2/$EX2" ./
 
 echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_governor
@@ -26,8 +26,8 @@ echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_gover
 for i in ${PONTOS}
 do
     echo "Testando $i"
-    "./$EX1" $i >> res1.txt
-    "./$EX2" $i >> res2.txt
+    "./$EX1" < $i >> res1.txt
+    "./$EX2" < $i >> res2.txt
 done
 
 echo "powersave" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_governor

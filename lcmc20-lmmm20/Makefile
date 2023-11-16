@@ -16,15 +16,6 @@ all:
 	@cp "$(DIR2)/$(EX2)" .
 	@echo "Pronto!"
 
-# Compila com marcadores do likwid
-markers:
-	@echo "Compilando com marcadores..."
-	@make CFLAGS="-I$LIKWID_INCLUDE -DLIKWID_PERFMON" -sBC $(DIR1)
-	@make CFLAGS="-I$LIKWID_INCLUDE -DLIKWID_PERFMON" -sBC $(DIR2)
-	@cp "$(DIR1)/$(EX1)" .
-	@cp "$(DIR2)/$(EX2)" .
-	@echo "Pronto!"
-
 # Remove arquivos objeto, temporários e outros
 clean:
 	@echo "Limpando sujeira..."
@@ -80,11 +71,56 @@ compact:
 	@echo "Compactando arquivos..."
 	tar -czvf $(DIR).tar.gz $(addprefix ../$(DIR)/, *)
 
-# Ativa flags de debug que mostram o resultado
-results:
-	@echo "Compilando com Debub de Resultados..."
+# Ativa flag de debug que mostra o resultado
+result:
+	@echo "Compilando com Debug de Resultados..."
 	@make results -sBC $(DIR1)
 	@make results -sBC $(DIR2)
+	@cp "$(DIR1)/$(EX1)" .
+	@cp "$(DIR2)/$(EX2)" .
+	@echo "Pronto!"
+
+# Ativa flag de debug que mostra o resíduo
+residual:
+	@echo "Compilando com Debug de Resíduo..."
+	@make residual -sBC $(DIR1)
+	@make residual -sBC $(DIR2)
+	@cp "$(DIR1)/$(EX1)" .
+	@cp "$(DIR2)/$(EX2)" .
+	@echo "Pronto!"
+
+# Ativa flag de debug que mostra o tempo
+time:
+	@echo "Compilando com Debug de Tempo..."
+	@make time -sBC $(DIR1)
+	@make time -sBC $(DIR2)
+	@cp "$(DIR1)/$(EX1)" .
+	@cp "$(DIR2)/$(EX2)" .
+	@echo "Pronto!"
+
+# Testa em máquina Pessoal
+pessoal:
+	@echo "Compilando para máquina pessoal..."
+	@make pessoal -sBC $(DIR1)
+	@make pessoal -sBC $(DIR2)
+	@cp "$(DIR1)/$(EX1)" .
+	@cp "$(DIR2)/$(EX2)" .
+	@echo "Pronto!"
+
+# Ativa marcadores do likwid e outras flags
+marcadores:
+	@echo "Compilando com marcadores..."
+	@make marcadores -sBC $(DIR1)
+	@make marcadores -sBC $(DIR2)
+	@cp "$(DIR1)/$(EX1)" .
+	@cp "$(DIR2)/$(EX2)" .
+	@echo "Pronto!"
+
+# Ativa somente os marcadores do likwid
+pontos:
+	@echo "Compilando com pontos..."
+	@make pontos -sBC $(DIR1)
+	@make pontos -sBC $(DIR2)
 	@cp "$(DIR1)/$(EX1)" .
 	@cp "$(DIR2)/$(EX2)" .
 	@echo "Pronto!"

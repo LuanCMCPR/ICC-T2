@@ -10,7 +10,7 @@
 /* Struct que representa um Sistema Linear de Intervalos */
 typedef struct 
 {
-    Range_t **cm; /* Matriz de coeficientes intervalar */
+    Range_t *cm; /* Matriz de coeficientes intervalar */
     Range_t *vit; /* Vetor de termos independentes intervalar */
 } LinearSystem_t;
 
@@ -61,7 +61,8 @@ void retroSubstitution(LinearSystem_t *LS, Range_t *x, int n);
         LS: Sistema linear
         size: Tamanho do Sistema Linear
 */
-void freeLinearSystem(LinearSystem_t *LS, int size);
+/* OTIMIZAÇAO: Removido a variavel size */
+void freeLinearSystem(LinearSystem_t *LS);
 
 
 /*
