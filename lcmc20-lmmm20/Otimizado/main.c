@@ -51,8 +51,8 @@ int main()
     // a = allocateArrayRange(sizeLS);
     LIKWID_MARKER_START("SOLUCAO_SISTEMA");
     tSolSL = timestamp();
-    // classicEliminationWithPivot(LS, sizeLS);
-    // retroSubstitution(LS, a, sizeLS);
+    classicEliminationWithPivot(LS, sizeLS);
+    retroSubstitution(LS, a, sizeLS);
     tSolSL = timestamp() - tSolSL;
     LIKWID_MARKER_STOP("SOLUCAO_SISTEMA");
 

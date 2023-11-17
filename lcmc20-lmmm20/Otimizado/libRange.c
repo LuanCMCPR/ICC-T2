@@ -99,16 +99,19 @@ Range_t createRange(double num)
 {
     Range_t res;
     
-    double m1, m2, m3, m4;
+    double m1, m2;
 
     m1 = num1.smallest * num2.smallest;
-    m2 = num1.smallest * num2.largest;
-    m3 = num1.largest * num2.smallest;
-    m4 = num1.largest * num2.largest;
+    // m2 = num1.smallest * num2.largest;
+    // m3 = num1.largest * num2.smallest;
+    m2 = num1.largest * num2.largest;
 
-    res.smallest = nextafter(fmin(fmin(m1, m2), fmin(m3,m4)), -INFINITY);
-    res.largest = nextafter(fmax(fmax(m1, m2), fmax(m3,m4)), INFINITY);
+    res.smallest = nextafter(m1, -INFINITY);
+    res.largest = nextafter(m2, INFINITY);
     
+    // res.smallest = nextafter(fmin(fmin(m1, m2), fmin(m3,m4)), -INFINITY);
+    // res.largest = nextafter(fmax(fmax(m1, m2), fmax(m3,m4)), INFINITY);
+
     return res;
 }
 
