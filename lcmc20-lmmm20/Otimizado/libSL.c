@@ -146,7 +146,7 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
     for(i = 0; i < num_points; i++)
     {
         /* To do: usar addRange() */
-        LS->vit[0].smallest += vpr->y[i].smallest; 
+        LS->vit[0].smallest += vpr->y[i].smallest;
         LS->vit[0].largest += vpr->y[i].largest;
     }
 
@@ -157,7 +157,8 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
     {
         /* Copia os valores de cima para baixo com base na primeira linha */
         for (j = 0; j < sizeLS-1; j++)
-            LS->cm[i*sizeLS + j] = LS->cm[((i-1)*(sizeLS)) + (j+1)]; 
+            LS->cm[i*sizeLS + j] = LS->cm[((i-1)*(sizeLS)) + (j+1)];
+        
 
         // REMOVIDO:
         // LS->cm[i + sizeLS-1].smallest = 0.0;
@@ -167,18 +168,21 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
         for (j = 0; j < num_points; j++)
         {
             /* Calcula o coeficiente de xn do Sistema Linear */
-            res = powerRange(vpr->x[j], power_x); // x^k com k = power_x
-            LS->cm[(i*sizeLS) + sizeLS-1].smallest += res.smallest;
-            LS->cm[(i*sizeLS) + sizeLS-1].largest += res.largest;
-
+            res = powerRange(vpr->x[j], power_x); // x^k scom k = power_x
+            LS->cm[(i*sizeLS) + (sizeLS-1)].smallest += res.smallest;
+            LS->cm[(i*sizeLS) + (sizeLS-1)].largest += res.largest;
             /* Calcula o coeficiente do Vetor de Termos Independentes */
             res = powerRange(vpr->x[j], i); // x[j]^i com i = linha
             Range_t mult = timeRange(vpr->y[j], res); // multiplica y[i] com x[j]^i
             LS->vit[i].smallest += mult.smallest;
             LS->vit[i].largest += mult.largest;
         }
+            
         power_x++;
     }
+
+    // printf("[%lf, %lf]\n", LS->cm[(1*sizeLS) + (sizeLS-1)].smallest, LS->cm[(1*sizeLS) + (sizeLS-1)].largest);
+    // printf("[%lf, %lf]\n", LS->cm[(2*sizeLS) + (sizeLS-1)].smallest, LS->cm[(2*sizeLS) + (sizeLS-1)].largest);
 
     printLinearSystem(LS, sizeLS);
 
@@ -197,9 +201,9 @@ void printLinearSystem(LinearSystem_t *LS, int size)
 
     for (i = 0; i < size; i++)
     {
-        for (j = 0; j < size; j++)
+        for (j = 0; j <     size; j++)
         {
-            printf("[%lf, %lf]x%d ", LS->cm[i + j].smallest, LS->cm[i + j].largest, j+1);
+            printf("[%lf, %lf]x%d ", LS->cm[i*size + j].smallest, LS->cm[i*size + j].largest, j+1);
         }
         printf("= [%lf, %lf]\n", LS->vit[i].smallest, LS->vit[i].largest);
     }
