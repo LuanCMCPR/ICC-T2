@@ -48,7 +48,7 @@ int main()
     LIKWID_MARKER_STOP("GERANDO_SISTEMA");
     
     /* Resolve o sistema linear */
-    // a = allocateArrayRange(sizeLS);
+    a = allocateArrayRange(sizeLS);
     LIKWID_MARKER_START("SOLUCAO_SISTEMA");
     tSolSL = timestamp();
     classicEliminationWithPivot(LS, sizeLS);
@@ -59,16 +59,16 @@ int main()
     /* Faz o calculo do resíduo, imprime coeficientes, resíduo e tempos de geração e solução */
     LIKWID_MARKER_START("CALCULO_RESIDUO");
     tResSL = timestamp();
-    // r = calculateResidualVector(vpr, a, num_points, sizeLS);
+    r = calculateResidualVector(vpr, a, num_points, sizeLS);
     tResSL = timestamp() - tResSL;
     LIKWID_MARKER_STOP("CALCULO_RESIDUO");
 
     #ifdef RESULT
-    // printArrayRange(a, sizeLS);
+    printArrayRange(a, sizeLS);
     #endif
     
     #ifdef RESIDUAL
-    // printArrayRange(r, num_points);
+    printArrayRange(r, num_points);
     #endif
 
     #ifdef TIME
@@ -78,9 +78,11 @@ int main()
     #endif
     
     /* Libera memória alocada*/
+    free(vpr->x);
+    free(vpr->y);
     free(vpr);
-    // free(a);
-    // free(r);
+    free(a);
+    free(r);
     freeLinearSystem(LS);
 
     LIKWID_MARKER_CLOSE;

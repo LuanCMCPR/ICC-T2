@@ -109,7 +109,6 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
         // REMOVIDO:
         // LS->cm[0 + i].smallest = 0.0;
         // LS->cm[0 + i].largest = 0.0;
-
         /* Cálculo dos Somatórios de x^i */
         for (j = 0; j < num_points; j++)
         {
@@ -117,98 +116,6 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
             LS->cm[0 + i].smallest += res.smallest; 
             LS->cm[0 + i].largest += res.largest;
         }    
-
-        // OPCAO 1;
-        //     res = powerRange(vpr->x[j], i + 1);
-        
-        //     res = timeRange(vpr->x[j], vpr->x[j]);
-        //     LS->cm[0 + i + 1].smallest += res.smallest; 
-        //     LS->cm[0 + i + 1].largest += res.largest;   
- 
-        //     res = timeRange(res, vpr->x[j])
-        //     LS->cm[0 + 1].smallest += res.smallest; 
-        //     LS->cm[0 + 1].largest += res.largest;
-            
-        //     res = powerRange(vpr->x[j], i + 3);
-        //     LS->cm[0 + i + 3].smallest += res.smallest; 
-        //     LS->cm[0 + i + 3].largest += res.largest;  
-        // }
-        
-        /*
-            LS->cm[0].smallest += vpr->[j].smallest; 
-            LS->cm[0].largest  += vpr->[j].largest;
-            LS->cm[0].smallest += vpr->[j+1].smallest; 
-            LS->cm[0].largest  += vpr->[j+1].largest;
-            LS->cm[0].smallest += vpr->[j+2].smallest; 
-            LS->cm[0].largest  += vpr->[j+2].largest;
-            LS->cm[0].smallest += vpr->[j+3].smallest; 
-            LS->cm[0].largest  += vpr->[j+3].largest;
-        
-            LS->cm[1].smallest += vpr->[j].smallest   * vpr->[j].smallest; 
-            LS->cm[1].largest  += vpr->[j].largest    * vpr->[j].largest;
-            LS->cm[1].smallest += vpr->[j+1].smallest * vpr->[j+1].smallest; 
-            LS->cm[1].largest  += vpr->[j+1].largest  * vpr->[j+1].largest;
-            LS->cm[1].smallest += vpr->[j+2].smallest * vpr->[j+2].smallest;
-            LS->cm[1].largest  += vpr->[j+2].largest  * vpr->[j+2].largest;
-            LS->cm[1].smallest += vpr->[j+3].smallest * vpr->[j+3].smallest; 
-            LS->cm[1].largest  += vpr->[j+3].largest  * vpr->[j+3].largest;
-
-            LS->cm[1].smallest += vpr->[j].smallest   * vpr->[j].smallest; 
-            LS->cm[1].largest  += vpr->[j].largest    * vpr->[j].largest;
-            LS->cm[1].smallest += vpr->[j+1].smallest * vpr->[j+1].smallest; 
-            LS->cm[1].largest  += vpr->[j+1].largest  * vpr->[j+1].largest;
-            LS->cm[1].smallest += vpr->[j+2].smallest * vpr->[j+2].smallest;
-            LS->cm[1].largest  += vpr->[j+2].largest  * vpr->[j+2].largest;
-            LS->cm[1].smallest += vpr->[j+3].smallest * vpr->[j+3].smallest; 
-            LS->cm[1].largest  += vpr->[j+3].largest  * vpr->[j+3].largest;
-
-            LS->cm[1].smallest += vpr->[j].smallest   * vpr->[j].smallest; 
-            LS->cm[1].largest  += vpr->[j].largest    * vpr->[j].largest;
-            LS->cm[1].smallest += vpr->[j+1].smallest * vpr->[j+1].smallest; 
-            LS->cm[1].largest  += vpr->[j+1].largest  * vpr->[j+1].largest;
-            LS->cm[1].smallest += vpr->[j+2].smallest * vpr->[j+2].smallest;
-            LS->cm[1].largest  += vpr->[j+2].largest  * vpr->[j+2].largest;
-            LS->cm[1].smallest += vpr->[j+3].smallest * vpr->[j+3].smallest; 
-            LS->cm[1].largest  += vpr->[j+3].largest  * vpr->[j+3].largest;
-
-            LS->cm[1].smallest += vpr->[j].smallest   * vpr->[j].smallest; 
-            LS->cm[1].largest  += vpr->[j].largest    * vpr->[j].largest;
-            LS->cm[1].smallest += vpr->[j+1].smallest * vpr->[j+1].smallest; 
-            LS->cm[1].largest  += vpr->[j+1].largest  * vpr->[j+1].largest;
-            LS->cm[1].smallest += vpr->[j+2].smallest * vpr->[j+2].smallest;
-            LS->cm[1].largest  += vpr->[j+2].largest  * vpr->[j+2].largest;
-            LS->cm[1].smallest += vpr->[j+3].smallest * vpr->[j+3].smallest; 
-            LS->cm[1].largest  += vpr->[j+3].largest  * vpr->[j+3].largest;
-
-            
-
-        */
-
-
-
-
-
-        // OPCAO 2;
-        //     res = powerRange(vpr->x[j], i + 1);
-        //     LS->cm[0 + i + 1].smallest += res.smallest; 
-        //     LS->cm[0 + i + 1].largest += res.largest;   
- 
-        //     res = powerRange(vpr->x[j], i+2);
-        //     LS->cm[0 + 1].smallest += res.smallest; 
-        //     LS->cm[0 + 1].largest += res.largest;
-            
-        //     res = powerRange(vpr->x[j], i + 3);
-        //     LS->cm[0 + i + 3].smallest += res.smallest; 
-        //     LS->cm[0 + i + 3].largest += res.largest;  
-        // }
-        
-        // OPCAO 3:
-        // for (j = 0; j < num_points; j+=2)
-        // {
-        //     LS->cm[0 + i]=addRange(powerRange(vpr->x[j], i), powerRange(vpr->x[j+1], i)); 
-        //     LS->cm[0 + i+1]=addRange(powerRange(vpr->x[j+2], i), powerRange(vpr->x[j+3], i));
-            
-        // }
 
     }
 
@@ -257,7 +164,7 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
 
     // printf("[%lf, %lf]\n", LS->cm[(1*sizeLS) + (sizeLS-1)].smallest, LS->cm[(1*sizeLS) + (sizeLS-1)].largest);
     // printf("[%lf, %lf]\n", LS->cm[(2*sizeLS) + (sizeLS-1)].smallest, LS->cm[(2*sizeLS) + (sizeLS-1)].largest);
-    // printLinearSystem(LS, sizeLS);
+    printLinearSystem(LS, sizeLS);
 
     return LS;
 }
@@ -298,22 +205,16 @@ void printLinearSystem(LinearSystem_t *LS, int size)
 void swapLines(Range_t* restrict cm, Range_t* restrict vit, unsigned int a, unsigned int b, int size)
 {
     /* Troca as linhas da matriz */
-    Range_t ptrA = cm[a * size]; 
-    printf("ptrA: %lf,%lf\n", ptrA->smallest, ptrA->largest);
+    Range_t *ptrA = cm + (a * size); 
+    // printf("ptrA: %lf,%lf\n", ptrA->smallest, ptrA->largest);
     Range_t *ptrB = cm + (b * size);
-    printf("ptrB: %lf,%lf\n", ptrB->smallest, ptrB->largest);
-    Range_t *ptrEnd = cm + (size*size);
+    // printf("ptrB: %lf,%lf\n\n", ptrB->smallest, ptrB->largest);
 
-    while(ptrA < ptrEnd)
-    {
-        Range_t aux = *ptrA;
-        *ptrA = *ptrB;
-        *ptrB = aux;
-
-        ptrA++;
-        ptrB++;
-    }   
-
+    for (int i = 0; i < size; i++) {
+        Range_t temp = ptrA[i];
+        ptrA[i] = ptrB[i];
+        ptrB[i] = temp;
+    }
     // REMOVIDO:
     // Range_t *l = cm[a];
     // cm[a] = cm[b];
@@ -353,6 +254,7 @@ unsigned int findMaxPivot(Range_t *cm, unsigned int l, unsigned int n)
     }
 
     /* Retorna em qual linha está o pivo */
+    printf("Pivo: %lf,%lf\n", max.smallest, max.largest);
     return pivot;
 }
 
@@ -371,6 +273,8 @@ void classicEliminationWithPivot(LinearSystem_t *LS, unsigned int n)
         unsigned int lPivot = findMaxPivot(LS->cm,i,n);
         if( i != lPivot )
             swapLines(LS->cm,LS->vit,i,lPivot, n);
+
+        printLinearSystem(LS, n);
         
         /* Vai para a próxima linha */
         for(int k = i+1; k < n; ++k)
