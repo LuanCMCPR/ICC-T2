@@ -90,81 +90,125 @@ LinearSystem_t *allocateLinearSystem(int size)
 /* OTIMIZAÇÃO:
         1. Alteração na forma de acesso da matriz, agora ela é alocada como um vetor
  */
-LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points, int sizeLS)
+LinearSystem_t *createLinearSystem(PointsRange_t * restrict vpr, PointsRange_t * restrict cvpr, long long int num_points, int sizeLS)
 {
-    int i, j, power_x;
+    long long int i, j, power_x;
+    double power_l, power_s;
     LinearSystem_t *LS;
     Range_t res;
-
-    LS = allocateLinearSystem(sizeLS);
+    Range_t p[6];
+    LS = allocateLinearSystem(sizeLS);  
 
     /* Cálculo dos coeficientes da primeira linha do Sistema Linear */
     
     LS->cm[0].smallest = nextafter(num_points, -INFINITY);
     LS->cm[0].largest = nextafter(num_points, INFINITY);
 
+    // REMOVIDO
+    // for(i = 1; i < sizeLS; i++)
+    // {
+    //  
+    //     // LS->cm[0 + i].smallest = 0.0;
+    //     // LS->cm[0 + i].largest = 0.0;
+    //     /* Cálculo dos Somatórios de x^i */
+    //     for (j = 0; j < num_points; j++)
+    //     {
+    //         res = powerRange(vpr->x[j], i);
+    //         LS->cm[i].smallest += res.smallest; 
+    //         LS->cm[i].largest += res.largest;
+    //     }    
 
-    for(i = 1; i < sizeLS; i++)
+    // }
+
+    // O sistema linear é de tamanho 5 x 5 
+    // a11x1 + a12x2 + a13x3 + a14x4 + a15x5 = b1
+    // a21x1 + a22x2 + a23x3 + a24x4 + a25x5 = b2
+    // a31x1 + a32x2 + a33x3 + a34x4 + a35x5 = b3
+    // a41x1 + a42x2 + a43x3 + a44x4 + a45x5 = b4
+    // a51x1 + a52x2 + a53x3 + a54x4 + a55x5 = b5
+
+    for(i = 0; i < num_points; i++)
     {
-        // REMOVIDO:
-        // LS->cm[0 + i].smallest = 0.0;
-        // LS->cm[0 + i].largest = 0.0;
-        /* Cálculo dos Somatórios de x^i */
-        for (j = 0; j < num_points; j++)
-        {
-            res = powerRange(vpr->x[j], i);
-            LS->cm[0 + i].smallest += res.smallest; 
-            LS->cm[0 + i].largest += res.largest;
-        }    
+        power_s = 1.0;
+        power_l = 1.0;
+        LS->vit[0].smallest += vpr->y[i].smallest;
+        LS->vit[0].largest += vpr->y[i].largest;
 
+        // Calcula a primeira linha da matriz de coeficientes e também calcula vetor de termos independentes
+        for(j = 1; j < sizeLS; ++j)
+        {
+            power_l *= vpr->x[i].largest;
+            power_s *= vpr->x[i].smallest;
+            LS->cm[j].largest += power_l;
+            LS->cm[j].smallest += power_s;
+            LS->vit[j].largest += power_l*vpr->y[i].largest;
+            LS->vit[j].smallest += power_s*vpr->y[i].smallest; 
+        }
+
+        // Calcula os elementos da última coluna da matriz de coeficientes
+        for (j = 1; j < sizeLS; ++j)
+        {
+            power_l *= vpr->x[i].largest;  
+            power_s *= vpr->x[i].smallest;
+            LS->cm[(j*sizeLS) + (sizeLS-1)].largest += power_l;
+            LS->cm[(j*sizeLS) + (sizeLS-1)].smallest += power_s;
+        }
     }
+    
+    for(i = 1; i < sizeLS; ++i)
+        for (j = 0; j < sizeLS-1; ++j)
+            LS->cm[i*sizeLS + j] = LS->cm[((i-1)*(sizeLS)) + (j+1)];
+    
+    printLinearSystem(LS, sizeLS);
 
     // REMOVIDO:
     // LS->vit[0].smallest = 0.0;
     // LS->vit[0].largest = 0.0;
 
+    // REMOVIDO:
     /* Cálculo do coeficiente do Vetor de Termos Independentes da Primeira Linha */
-    for(i = 0; i < num_points; i++)
-    {
-        /* To do: usar addRange() */
-        LS->vit[0].smallest += vpr->y[i].smallest;
-        LS->vit[0].largest += vpr->y[i].largest;
-    }
+    // for(i = 0; i < num_points; i++)
+    // {
 
+    //     LS->vit[0].smallest += vpr->y[i].smallest;
+    //     LS->vit[0].largest += vpr->y[i].largest;
+    // }
+
+    // REMOVIDO
     /* Cálculo dos coeficientes das demais linhas */
     /* power_x serve para calcular o coeficiente gerado pelo último somatório da equação */
-    power_x = sizeLS;
-    for(i = 1; i < sizeLS; i++)
-    {
-        /* Copia os valores de cima para baixo com base na primeira linha */
-        for (j = 0; j < sizeLS-1; j++)
-            LS->cm[i*sizeLS + j] = LS->cm[((i-1)*(sizeLS)) + (j+1)];
+    // power_x = sizeLS;
+    // for(i = 1; i < sizeLS; i++)
+    // {
+    //     /* Copia os valores de cima para baixo com base na primeira linha */
+    //     for (j = 0; j < sizeLS-1; j++)
+    //         LS->cm[i*sizeLS + j] = LS->cm[((i-1)*(sizeLS)) + (j+1)];
         
 
         // REMOVIDO:
         // LS->cm[i + sizeLS-1].smallest = 0.0;
         // LS->cm[i + sizeLS-1].largest = 0.0;
         
+        // REMOVIDO
         /* Cálcula o coeficiente do Vetor de Termos Independetes e o último coeficiente da equação */
-        for (j = 0; j < num_points; j++)
-        {
-            /* Calcula o coeficiente de xn do Sistema Linear */
-            res = powerRange(vpr->x[j], power_x); // x^k scom k = power_x
-            LS->cm[(i*sizeLS) + (sizeLS-1)].smallest += res.smallest;
-            LS->cm[(i*sizeLS) + (sizeLS-1)].largest += res.largest;
-            /* Calcula o coeficiente do Vetor de Termos Independentes */
-            res = powerRange(vpr->x[j], i); // x[j]^i com i = linha
-            Range_t mult = timeRange(vpr->y[j], res); // multiplica y[i] com x[j]^i
-            LS->vit[i].smallest += mult.smallest;
-            LS->vit[i].largest += mult.largest;
-        }
-            
-        power_x++;
-    }
+        // for (j = 0; j < num_points; j++)
+        // {
+            // /* Calcula o coeficiente de xn do Sistema Linear */
+            // res = powerRange(vpr->x[j], power_x); // x^k scom k = power_x
+            // LS->cm[(i*sizeLS) + (sizeLS-1)].smallest += res.smallest;
+            // LS->cm[(i*sizeLS) + (sizeLS-1)].largest += res.largest;
 
-    // printf("[%lf, %lf]\n", LS->cm[(1*sizeLS) + (sizeLS-1)].smallest, LS->cm[(1*sizeLS) + (sizeLS-1)].largest);
-    // printf("[%lf, %lf]\n", LS->cm[(2*sizeLS) + (sizeLS-1)].smallest, LS->cm[(2*sizeLS) + (sizeLS-1)].largest);
-    printLinearSystem(LS, sizeLS);
+            /* Calcula o coeficiente do Vetor de Termos Independentes */
+            // res = powerRange(vpr->x[j], i);
+            // x[j]^i com i = linha
+            // Range_t mult = timeRange(vpr->y[j], res); 
+            // multiplica y[i] com x[j]^i
+            // LS->vit[i].smallest += mult.smallest;
+            // LS->vit[i].largest += mult.largest;
+        // }
+            
+    //     power_x++;
+    // }
 
     return LS;
 }
@@ -206,9 +250,7 @@ void swapLines(Range_t* restrict cm, Range_t* restrict vit, unsigned int a, unsi
 {
     /* Troca as linhas da matriz */
     Range_t *ptrA = cm + (a * size); 
-    // printf("ptrA: %lf,%lf\n", ptrA->smallest, ptrA->largest);
     Range_t *ptrB = cm + (b * size);
-    // printf("ptrB: %lf,%lf\n\n", ptrB->smallest, ptrB->largest);
 
     for (int i = 0; i < size; i++) {
         Range_t temp = ptrA[i];
@@ -254,7 +296,7 @@ unsigned int findMaxPivot(Range_t *cm, unsigned int l, unsigned int n)
     }
 
     /* Retorna em qual linha está o pivo */
-    printf("Pivo: %lf,%lf\n", max.smallest, max.largest);
+    // printf("Pivo: %lf,%lf\n", max.smallest, max.largest);
     return pivot;
 }
 
@@ -274,7 +316,7 @@ void classicEliminationWithPivot(LinearSystem_t *LS, unsigned int n)
         if( i != lPivot )
             swapLines(LS->cm,LS->vit,i,lPivot, n);
 
-        printLinearSystem(LS, n);
+        // printLinearSystem(LS, n);
         
         /* Vai para a próxima linha */
         for(int k = i+1; k < n; ++k)

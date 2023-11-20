@@ -9,15 +9,15 @@
 typedef struct
 {
     double smallest; /* Menor valor do Intervalo */
-    double largest; /* Maior valor do Intervalo */
+    double largest;  /* Maior valor do Intervalo */
 } Range_t;
 
 /* Struct que representa a tabela de pontos de Intervalos */
 /* OTIMIZAÇÃO: Mudança de um AoS para uma SoA */
 typedef struct
 {
-    Range_t *x;  /* Intervalo que representa x */
-    Range_t *y; /* Intervalo que representa y */
+    Range_t *x;  /* Vetor de Intervalos que representa xi's */
+    Range_t *y;  /* Vetor de Intervalos que representa yi's */
 } PointsRange_t;
 
 

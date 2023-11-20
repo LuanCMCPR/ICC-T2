@@ -9,11 +9,22 @@
 #include <stdlib.h>
 #include <likwid.h>
 
+void copyPointsRangeArray(PointsRange_t *vpr, PointsRange_t *cvpr, long long int num_points)
+{
+    int i;
+    for(i = 0; i < num_points; i++)
+    {
+        cvpr->x[i] = vpr->x[i];
+        cvpr->y[i] = vpr->y[i];
+    }
+}
+
+
 int main()
 {
     int degreeN, num_points, sizeLS;
     double tGeraSL, tSolSL, tResSL;
-    PointsRange_t *vpr;
+    PointsRange_t *vpr, *cvpr;
     LinearSystem_t *LS;
     Range_t *a, *r;
 
@@ -26,7 +37,9 @@ int main()
         if((degreeN > 0) && (num_points > 0))
         {
             sizeLS = degreeN + 1;
-            vpr = generatePointsRanges(num_points); 
+            vpr = generatePointsRanges(num_points);
+            cvpr = allocatePointsRangeArray(num_points);
+            copyPointsRangeArray(vpr, cvpr, num_points);
         }
         else
         {
@@ -40,13 +53,16 @@ int main()
         exit(2);
     }
 
+    // printIntervals(vpr, num_points);
+    // printIntervals(cvpr, num_points);
+
     /* Gera o sistema linear */
     LIKWID_MARKER_START("GERANDO_SISTEMA");
     tGeraSL = timestamp(); 
-    LS = createLinearSystem(vpr, num_points, sizeLS);
+    LS = createLinearSystem(vpr,cvpr, num_points, sizeLS);
     tGeraSL = timestamp() - tGeraSL;
     LIKWID_MARKER_STOP("GERANDO_SISTEMA");
-    
+        
     /* Resolve o sistema linear */
     a = allocateArrayRange(sizeLS);
     LIKWID_MARKER_START("SOLUCAO_SISTEMA");

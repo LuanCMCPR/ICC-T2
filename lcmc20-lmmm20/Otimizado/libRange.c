@@ -250,6 +250,7 @@ PointsRange_t *allocatePointsRangeArray(long long int size)
     
     array->x = (Range_t *) malloc(size * sizeof(Range_t));
     array->y = (Range_t *) malloc(size * sizeof(Range_t));
+    
 
     if (array == NULL)
     {
