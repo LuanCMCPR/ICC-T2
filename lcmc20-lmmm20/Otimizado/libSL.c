@@ -92,11 +92,11 @@ LinearSystem_t *allocateLinearSystem(int size)
  */
 LinearSystem_t *createLinearSystem(PointsRange_t * restrict vpr, PointsRange_t * restrict cvpr, long long int num_points, int sizeLS)
 {
-    long long int i, j, power_x;
-    double power_l, power_s;
+    long long int i, j; // power_x
+    double pwr_l[16], pwr_s[16], power_l, power_s;
     LinearSystem_t *LS;
-    Range_t res;
-    Range_t p[6];
+    // Range_t res;
+    // Range_t p[10];
     LS = allocateLinearSystem(sizeLS);  
 
     /* Cálculo dos coeficientes da primeira linha do Sistema Linear */
@@ -133,25 +133,37 @@ LinearSystem_t *createLinearSystem(PointsRange_t * restrict vpr, PointsRange_t *
         power_l = 1.0;
         LS->vit[0].smallest += vpr->y[i].smallest;
         LS->vit[0].largest += vpr->y[i].largest;
+        
+        for (int k = 0; k < sizeLS; k++)
+        {
+            pwr_l[k] = power_l;
+            pwr_s[k] = power_s;
+            power_l *= vpr->x[i].largest;
+            power_s *= vpr->x[i].smallest;
+        }
 
         // Calcula a primeira linha da matriz de coeficientes e também calcula vetor de termos independentes
         for(j = 1; j < sizeLS; ++j)
         {
-            power_l *= vpr->x[i].largest;
-            power_s *= vpr->x[i].smallest;
-            LS->cm[j].largest += power_l;
-            LS->cm[j].smallest += power_s;
-            LS->vit[j].largest += power_l*vpr->y[i].largest;
-            LS->vit[j].smallest += power_s*vpr->y[i].smallest; 
+            LS->cm[j].largest   += pwr_l[j];
+            LS->cm[j].smallest  += pwr_s[j];
+            LS->vit[j].largest  += pwr_l[j] * vpr->y[i].largest;
+            LS->vit[j].smallest += pwr_s[j] * vpr->y[i].smallest; 
         }
 
+        for (int k = 0; k < sizeLS; k++)
+        {
+            pwr_l[k] = power_l;
+            pwr_s[k] = power_s;
+            power_l *= vpr->x[i].largest;
+            power_s *= vpr->x[i].smallest;
+        }
+        
         // Calcula os elementos da última coluna da matriz de coeficientes
         for (j = 1; j < sizeLS; ++j)
         {
-            power_l *= vpr->x[i].largest;  
-            power_s *= vpr->x[i].smallest;
-            LS->cm[(j*sizeLS) + (sizeLS-1)].largest += power_l;
-            LS->cm[(j*sizeLS) + (sizeLS-1)].smallest += power_s;
+            LS->cm[(j*sizeLS) + (sizeLS-1)].largest += pwr_l[j];
+            LS->cm[(j*sizeLS) + (sizeLS-1)].smallest += pwr_s[j];
         }
     }
     
