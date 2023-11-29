@@ -3,11 +3,11 @@
 # Luan Carlos Maia Cruz - GRR20203891
 # Leonardo Marin Mendes Martin - GRR20205675 
 
-# Uso: ./comparaTodas <ponto>
+# Uso: ./comparaTodas_geraEntradas.sh <ponto x que deseja comparar>
 
 if [ $# -ne 1 ]
 then
-	echo "Uso: ./comparaTodas <entrada>"
+	echo "Uso: ./comparaTodas <ponto x que deseja comparar>"
 	exit 1
 fi
 
@@ -16,8 +16,9 @@ CORE=3
 P=$1
 D1="semOtimizacao"
 D2="Otimizado"
-EX1="ajustePol"
-EX2="ajustePolOtimizado"
+EX1="./ajustePol"
+EX2="./ajustePolOtimizado"
+ENTRADA="gera_entrada"
 
 
 echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_governor
@@ -29,8 +30,8 @@ echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_gover
 	make time -sBC $D2
 	cp "$D2/$EX2" .
 
-	T1=$("./$EX1" < $P)
-	T2=$("./$EX2" < $P)
+	T1=$(./${ENTRADA} $P | $EX1)
+	T2=$(./${ENTRADA} $P | $EX2)
 
 	echo -e "TEMPO"
 	echo $D1
@@ -55,12 +56,12 @@ echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_gover
     for M in ${METRICA}
     do
 		D=$D1
-	    EX="./$EX1"
+	    EX=$EX1
 	    echo -e "\n${M}"
 	    for i in {1..2}
 		do  
 			echo ${D}
-			likwid-perfctr -C $CORE -g $M -m -o "$M.csv" $EX < $P > /dev/null
+			./$ENTRADA $P | likwid-perfctr -C $CORE -g $M -m -o "$M.csv" $EX > /dev/null
 
 			# Separa os dados para o group FLOPS_DP	
     		if [ "$M" == "FLOPS_DP" ]	
@@ -101,7 +102,7 @@ echo "performance" > /sys/devices/system/cpu/cpufreq/policy${CORE}/scaling_gover
 	   		fi
 
 			D=$D2
-			EX="./$EX2"
+			EX=$EX2
 			rm ${M}.csv
 		done
 	done		

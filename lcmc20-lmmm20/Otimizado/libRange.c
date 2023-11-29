@@ -140,7 +140,7 @@ Range_t createRange(double num)
 */
 Range_t divisionRange(Range_t num1, Range_t num2)
 {
-    Range_t res, aux;
+    Range_t res;
     
     if(((num2.smallest) <= 0) && ((num2.largest) >= 0) ) // Correção
     {
@@ -149,9 +149,12 @@ Range_t divisionRange(Range_t num1, Range_t num2)
     }
     else
     {
-        aux.largest = 1 / num2.smallest;
-        aux.smallest = 1 / num2.largest;
-        res = timeRange(num1, aux);
+        // aux.largest = 1 / num2.smallest;
+        // aux.smallest = 1 / num2.largest;
+        // res = timeRange(num1, aux);
+        res.largest = num1.largest * 1 / num2.smallest;
+        res.smallest = num1.smallest * 1 / num2.largest; 
+        
     }
     
     return res;

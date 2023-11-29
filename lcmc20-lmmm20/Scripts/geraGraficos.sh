@@ -30,7 +30,7 @@ SOLUCAOSL=("$IN_NOT_OPT/solucaoSL_TEMPO.dat" "$IN_NOT_OPT/solucaoSL_FLOPS_DP.dat
 RESIDUOSL=("$IN_NOT_OPT/residuoSL_TEMPO.dat" "$IN_NOT_OPT/residuoSL_L3.dat" "$IN_NOT_OPT/residuoSL_L2CACHE.dat" "$IN_NOT_OPT/residuoSL_FLOPS_DP.dat")
 GERALSL_OTZ=("$IN_OPT/geraSL_OTZTEMPO.dat" "$IN_OPT/geraSL_OTZL3.dat" "$IN_OPT/geraSL_OTZL2CACHE.dat" "$IN_OPT/geraSL_OTZFLOPS_DP.dat")
 SOLUCAOSL_OTZ=("$IN_OPT/solucaoSL_OTZTEMPO.dat" "$IN_OPT/solucaoSL_OTZFLOPS_DP.dat")
-RESIDUOSL_OTZ=("$IN_NOT_OPT/residuoSL_OTZTEMPO.dat" "$IN_NOT_OPT/residuoSL_OTZL3.dat" "$IN_NOT_OPT/residuoSL_OTZL2CACHE.dat" "$IN_NOT_OPT/residuoSL_OTZFLOPS_DP.dat") 
+RESIDUOSL_OTZ=("$IN_OPT/residuoSL_OTZTEMPO.dat" "$IN_OPT/residuoSL_OTZL3.dat" "$IN_OPT/residuoSL_OTZL2CACHE.dat" "$IN_OPT/residuoSL_OTZFLOPS_DP.dat") 
 
 # Iteração sobre os pares de arquivos 
 for ((i=0; i < ${TAM}; i++))

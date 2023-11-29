@@ -8,11 +8,11 @@
 #include "libRange.h"
 
 /* Struct que representa um Sistema Linear de Intervalos */
-typedef struct 
-{
-    Range_t *cm; /* Matriz de coeficientes intervalar */
-    Range_t *vit; /* Vetor de termos independentes intervalar */
-} LinearSystem_t;
+    typedef struct 
+    {
+        Range_t *cm; /* Matriz de coeficientes intervalar */
+        Range_t *vit; /* Vetor de termos independentes intervalar */
+    } LinearSystem_t;
 
 /*
     Função que aloca um Sistema Linear.
@@ -30,7 +30,7 @@ LinearSystem_t *allocateLinearSystem(int size);
     Parâmetros: Matriz de coeficientes, Vetor de termos independentes, Ordem da matriz.
     Retorno: Sistema Linear construído.  
 */
-LinearSystem_t *createLinearSystem(PointsRange_t* vpr,PointsRange_t * restrict cvpr, long long int num_points,  int sizeLS);
+void createLinearSystem(LinearSystem_t *LS, PointsRange_t* vpr, long long int num_points,  int sizeLS);
 
 /*
     Função que imprime o Sistema Linear.
@@ -82,4 +82,4 @@ Range_t* allocateArrayRange(int size);
         num_points: Número de pontos
         sizeLS: Tamanho do Sistema Linear
 */
-Range_t* calculateResidualVector(PointsRange_t *vpr, Range_t *a,long long int num_points, int sizeLS);
+void calculateResidualVector(Range_t *rv, PointsRange_t *vpr, Range_t *a,long long int num_points, int sizeLS);

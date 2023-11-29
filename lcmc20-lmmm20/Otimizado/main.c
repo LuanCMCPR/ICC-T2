@@ -9,22 +9,11 @@
 #include <stdlib.h>
 #include <likwid.h>
 
-void copyPointsRangeArray(PointsRange_t *vpr, PointsRange_t *cvpr, long long int num_points)
-{
-    int i;
-    for(i = 0; i < num_points; i++)
-    {
-        cvpr->x[i] = vpr->x[i];
-        cvpr->y[i] = vpr->y[i];
-    }
-}
-
-
 int main()
 {
     int degreeN, num_points, sizeLS;
     double tGeraSL, tSolSL, tResSL;
-    PointsRange_t *vpr, *cvpr;
+    PointsRange_t *vpr;
     LinearSystem_t *LS;
     Range_t *a, *r;
 
@@ -38,8 +27,6 @@ int main()
         {
             sizeLS = degreeN + 1;
             vpr = generatePointsRanges(num_points);
-            cvpr = allocatePointsRangeArray(num_points);
-            copyPointsRangeArray(vpr, cvpr, num_points);
         }
         else
         {
@@ -53,13 +40,11 @@ int main()
         exit(2);
     }
 
-    // printIntervals(vpr, num_points);
-    // printIntervals(cvpr, num_points);
-
+    LS = allocateLinearSystem(sizeLS);
     /* Gera o sistema linear */
     LIKWID_MARKER_START("GERANDO_SISTEMA");
     tGeraSL = timestamp(); 
-    LS = createLinearSystem(vpr,cvpr, num_points, sizeLS);
+    createLinearSystem(LS, vpr, num_points, sizeLS);
     tGeraSL = timestamp() - tGeraSL;
     LIKWID_MARKER_STOP("GERANDO_SISTEMA");
         
@@ -72,10 +57,11 @@ int main()
     tSolSL = timestamp() - tSolSL;
     LIKWID_MARKER_STOP("SOLUCAO_SISTEMA");
 
+    r = allocateArrayRange(num_points);
     /* Faz o calculo do resíduo, imprime coeficientes, resíduo e tempos de geração e solução */
     LIKWID_MARKER_START("CALCULO_RESIDUO");
     tResSL = timestamp();
-    r = calculateResidualVector(vpr, a, num_points, sizeLS);
+    calculateResidualVector(r, vpr, a, num_points, sizeLS);
     tResSL = timestamp() - tResSL;
     LIKWID_MARKER_STOP("CALCULO_RESIDUO");
 

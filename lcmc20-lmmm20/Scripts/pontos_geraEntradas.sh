@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Uso: ./perfect_pontos.sh <executavel> <diretorio de saida>
+# Uso: ./pontos_geraEntrada.sh <executavel> <diretorio de saida>
 
 # Testa se possui argumentos
-if [ $# -ne 3 ]
+if [ $# -ne 2 ]
 then
-    echo "Uso: ./perfect_pontos.sh <executavel> <diretorio de entradas> <diretorio de saida>"
+    echo "Uso: ./pontos_geraEntrada.sh <executavel> <diretorio de saida>"
     exit 1
 fi
 
@@ -18,7 +18,7 @@ EXEC=$1
 D1="semOtimizacao"
 D2="Otimizado"
 EXE="ajustePol"
-DIR_IN=$2
+ENTRADA="gera_entrada"
 
 
 
@@ -58,7 +58,7 @@ do
 	echo -n "$p " >> $F1$T.dat
 	echo -n "$p " >> $F2$T.dat
 	echo -n "$p " >> $F3$T.dat
-	TEMPOS=$($EXEC < ${DIR_IN}$p.in)
+	TEMPOS=$(./${ENTRADA} $p | $EXEC)
 	echo $TEMPOS | awk '{print $1}' >> $F1$T.dat
 	echo $TEMPOS | awk '{print $2}' >> $F2$T.dat
 	echo $TEMPOS | awk '{print $3}' >> $F3$T.dat
@@ -88,7 +88,7 @@ do
 		fi
 		echo -n "$p " >> $F3$k.dat
      
-		likwid-perfctr -C $CORE -g $k -m -o "$k$p.csv" "$EXEC" < ${DIR_IN}$p.in > /dev/null
+		./${ENTRADA} $p | likwid-perfctr -C $CORE -g $k -m -o "$k$p.csv" "$EXEC" > /dev/null
 
 		# Separa os dados para o group FLOPS_DP	
     	if [ "$k" == "FLOPS_DP" ]	
@@ -131,7 +131,7 @@ done
 
 echo "powersave" > /sys/devices/system/cpu/cpufreq/policy$CORE/scaling_governor
 
-DIR=$3
+DIR=$2
 # Move arquivos para o diretório de saída
 mkdir -p $DIR
 mkdir -p "$DIR/CSV"

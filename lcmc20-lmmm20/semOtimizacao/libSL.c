@@ -145,8 +145,6 @@ LinearSystem_t *createLinearSystem(PointsRange_t *vpr, long long int num_points,
         power_x++;
     }
 
-    printLinearSystem(LS, sizeLS);
-
     return LS;
 }
 

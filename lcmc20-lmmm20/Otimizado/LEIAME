@@ -16,7 +16,7 @@ USO:
     
     ./script.sh <arquivo de entrada>
     O script irá executar o programa para o arquivo de entrada fornecido e imprimir os resultados para as métricas
-    FLOPS_DP, AVX_DP e ENERGY [J]
+    FLOPS_DP, AVX_DP
 
 BIBLIOTECAS:
 

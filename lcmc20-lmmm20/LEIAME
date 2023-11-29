@@ -6,17 +6,11 @@ USO:
 
     Executavel:    
     
-    ./ajustePol
+    ./ajustePol ou ./ajustePolOtimizada
     O programa irá solicitar ao usuário o grau do polinômio e a quantidade de pontos.
     Em seguida, o usuário deverá fornecer os pontos, um por linha, no formato "x y".
     O programa irá calcular o ajuste de curva e imprimir os coeficientes, resíduo, 
     tempo de geração e tempo de solução.
-    
-    per:
-    
-    ./script.sh <arquivo de entrada>
-    O script irá executar o programa para o arquivo de entrada fornecido e imprimir os resultados para as métricas
-    FLOPS_DP, AVX_DP e ENERGY [J]
 
 SCRIPTS:
 
@@ -49,6 +43,14 @@ SCRIPTS:
     USO: ./testarDiff.sh
     Testa se todas as saídas iguais para a versão otimizada e não otimizada
 
+    pontos_geraEntrada.sh:
+    USO: ./pontos_geraEntrada.sh <executavel> <diretorio de saida>
+    Faz a geração das tabelas de pontos x, y para cada métrica utilizando o script gera_entrada
+
+    comparaTodas_geraEntradas.sh:
+    USO: ./comparaTodas_geraEntradas.sh <ponto x que deseja comparar>
+    Faz a comparação da versão otimizada com a versão não otitmizada de todas as métricas, utilizando as entradas do executavel
+    gera entradas.
 
 BIBLIOTECAS:
 
@@ -82,8 +84,15 @@ DIRETÓRIO E ARQUIVOS:
 
     Entradas: Diretório com as entradas geradas pelo script geraEntradas.sh
 
+    Scripts: Diretório onde estão todos os scripts utilizados para testes, geração de gráficos, 
+             geração das entradas e geração de pontos para as métricas
+
     Makefile: É um Makefile para fazer o gerenciamento e facilitar testes do programa
               Existem observações sobre cada regra criada
+
+    dadosOtimizados: Tabelas com os pontos x e y de cada métrica, usando o programa otimizado
+
+    dadosSemOtimizacação: Tabelas com os pontos x e y de cada métrica, usando o programa sem otimizacao
 
 
 CÓDIGOS DE ERRO:

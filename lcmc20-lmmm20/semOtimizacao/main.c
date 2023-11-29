@@ -8,7 +8,6 @@
 #include "libSL.h"
 #include <stdlib.h>
 #include <likwid.h>
-#include <likwid-marker.h>
 
 int main()
 {
@@ -64,12 +63,20 @@ int main()
     tResSL = timestamp() - tResSL;
     LIKWID_MARKER_STOP("CALCULO_RESIDUO");
 
+    #ifdef RESULT
     printArrayRange(a, sizeLS);
+    #endif
+    
+    #ifdef RESIDUAL
     printArrayRange(r, num_points);
+    #endif
+
+    #ifdef TIME
     printf("%1.8e\n", tGeraSL);
     printf("%1.8e\n", tSolSL);
     printf("%1.8e\n", tResSL);
-
+    #endif
+    
     /* Libera memória alocada*/
     free(vpr);
     free(a);

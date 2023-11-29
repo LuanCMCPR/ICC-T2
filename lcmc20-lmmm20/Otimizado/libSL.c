@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include <fenv.h>
 /*
     Função que aloca um Sistema Linear.
     Parametros:
@@ -90,42 +91,23 @@ LinearSystem_t *allocateLinearSystem(int size)
 /* OTIMIZAÇÃO:
         1. Alteração na forma de acesso da matriz, agora ela é alocada como um vetor
  */
-LinearSystem_t *createLinearSystem(PointsRange_t * restrict vpr, PointsRange_t * restrict cvpr, long long int num_points, int sizeLS)
+void createLinearSystem(LinearSystem_t *LS, PointsRange_t * restrict vpr, long long int num_points, int sizeLS)
 {
-    long long int i, j; // power_x
-    double pwr_l[16], pwr_s[16], power_l, power_s;
-    LinearSystem_t *LS;
+    // LinearSystem_t *LS;
     // Range_t res;
     // Range_t p[10];
-    LS = allocateLinearSystem(sizeLS);  
+    // REMOVIDO
+    // LS = allocateLinearSystem(sizeLS);  
 
     /* Cálculo dos coeficientes da primeira linha do Sistema Linear */
     
     LS->cm[0].smallest = nextafter(num_points, -INFINITY);
     LS->cm[0].largest = nextafter(num_points, INFINITY);
 
-    // REMOVIDO
-    // for(i = 1; i < sizeLS; i++)
-    // {
-    //  
-    //     // LS->cm[0 + i].smallest = 0.0;
-    //     // LS->cm[0 + i].largest = 0.0;
-    //     /* Cálculo dos Somatórios de x^i */
-    //     for (j = 0; j < num_points; j++)
-    //     {
-    //         res = powerRange(vpr->x[j], i);
-    //         LS->cm[i].smallest += res.smallest; 
-    //         LS->cm[i].largest += res.largest;
-    //     }    
-
-    // }
-
-    // O sistema linear é de tamanho 5 x 5 
-    // a11x1 + a12x2 + a13x3 + a14x4 + a15x5 = b1
-    // a21x1 + a22x2 + a23x3 + a24x4 + a25x5 = b2
-    // a31x1 + a32x2 + a33x3 + a34x4 + a35x5 = b3
-    // a41x1 + a42x2 + a43x3 + a44x4 + a45x5 = b4
-    // a51x1 + a52x2 + a53x3 + a54x4 + a55x5 = b5
+    long long int i, j;
+    double pwr_l[9], pwr_s[9], power_l, power_s;
+    int num_pow = sizeLS*2;
+    int limit = sizeLS-1;
 
     for(i = 0; i < num_points; i++)
     {
@@ -134,8 +116,8 @@ LinearSystem_t *createLinearSystem(PointsRange_t * restrict vpr, PointsRange_t *
         LS->vit[0].smallest += vpr->y[i].smallest;
         LS->vit[0].largest += vpr->y[i].largest;
         
-        for (int k = 0; k < sizeLS; k++)
-        {
+        for (int k = 0; k < num_pow; k++)
+        {   
             pwr_l[k] = power_l;
             pwr_s[k] = power_s;
             power_l *= vpr->x[i].largest;
@@ -145,33 +127,25 @@ LinearSystem_t *createLinearSystem(PointsRange_t * restrict vpr, PointsRange_t *
         // Calcula a primeira linha da matriz de coeficientes e também calcula vetor de termos independentes
         for(j = 1; j < sizeLS; ++j)
         {
-            LS->cm[j].largest   += pwr_l[j];
-            LS->cm[j].smallest  += pwr_s[j];
-            LS->vit[j].largest  += pwr_l[j] * vpr->y[i].largest;
+            
+            LS->cm[j].smallest  += pwr_s[j];    
             LS->vit[j].smallest += pwr_s[j] * vpr->y[i].smallest; 
+            LS->cm[j].largest   += pwr_l[j];
+            LS->vit[j].largest  += pwr_l[j] * vpr->y[i].largest;
         }
 
-        for (int k = 0; k < sizeLS; k++)
-        {
-            pwr_l[k] = power_l;
-            pwr_s[k] = power_s;
-            power_l *= vpr->x[i].largest;
-            power_s *= vpr->x[i].smallest;
-        }
         
         // Calcula os elementos da última coluna da matriz de coeficientes
         for (j = 1; j < sizeLS; ++j)
         {
-            LS->cm[(j*sizeLS) + (sizeLS-1)].largest += pwr_l[j];
-            LS->cm[(j*sizeLS) + (sizeLS-1)].smallest += pwr_s[j];
+            LS->cm[(j*sizeLS) + (limit)].smallest += pwr_s[j+4];
+            LS->cm[(j*sizeLS) + (limit)].largest += pwr_l[j+4];
         }
     }
     
     for(i = 1; i < sizeLS; ++i)
-        for (j = 0; j < sizeLS-1; ++j)
+        for (j = 0; j < limit; ++j)
             LS->cm[i*sizeLS + j] = LS->cm[((i-1)*(sizeLS)) + (j+1)];
-    
-    printLinearSystem(LS, sizeLS);
 
     // REMOVIDO:
     // LS->vit[0].smallest = 0.0;
@@ -222,7 +196,7 @@ LinearSystem_t *createLinearSystem(PointsRange_t * restrict vpr, PointsRange_t *
     //     power_x++;
     // }
 
-    return LS;
+    // return LS;
 }
 
 /*
@@ -327,8 +301,6 @@ void classicEliminationWithPivot(LinearSystem_t *LS, unsigned int n)
         unsigned int lPivot = findMaxPivot(LS->cm,i,n);
         if( i != lPivot )
             swapLines(LS->cm,LS->vit,i,lPivot, n);
-
-        // printLinearSystem(LS, n);
         
         /* Vai para a próxima linha */
         for(int k = i+1; k < n; ++k)
@@ -342,9 +314,18 @@ void classicEliminationWithPivot(LinearSystem_t *LS, unsigned int n)
             /* Subtrai de cada elemento da equação a multiplicação
              * desde elemento com o multiplicador calculado */
             for(int j = i+1; j < n; ++j)
-                LS->cm[k*n + j] = subtractRange(LS->cm[k*n + j], timeRange(m,LS->cm[i*n + j]));
+            {
+                LS->cm[k*n + j].smallest -= m.smallest * LS->cm[i*n + j].smallest;
+                LS->cm[k*n + j].largest -= m.largest * LS->cm[i*n + j].largest;
+            }
+            // REMOVIDO
+            // LS->cm[k*n + j] = subtractRange(LS->cm[k*n + j], timeRange(m,LS->cm[i*n + j]));
             
-            LS->vit[k] = subtractRange(LS->vit[k], timeRange(m,LS->vit[i]));
+            // }
+            LS->vit[k].smallest -= m.smallest * LS->vit[i].smallest;
+            LS->vit[k].largest -= m.largest * LS->vit[i].largest;
+            // REMOVIDO
+            // LS->vit[k] = subtractRange(LS->vit[k], timeRange(m,LS->vit[i]));
         }
     }
 }
@@ -367,7 +348,13 @@ void retroSubstitution(LinearSystem_t *LS, Range_t *x, int n)
         /* Vai para a posição de um indíce acima e subtrai
          * os valores já calculados */
         for(int j = i+1; j < n; ++j)
-            x[i] = subtractRange(x[i], timeRange(LS->cm[i*n + j],x[j]));
+        {
+            x[i].smallest -= LS->cm[i*n + j].smallest * x[j].smallest;
+            x[i].largest -= LS->cm[i*n + j].largest * x[j].largest;
+        }   
+        
+        // REMOVIDO
+        // x[i] = subtractRange(x[i], timeRange(LS->cm[i*n + j],x[j]));
 
         /* Divide pelo coeficiente*/
         // if( (LS->cm[i][i].smallest != 0.0) && (LS->cm[i][i].largest != 0.0)) // Correção 2
@@ -408,27 +395,50 @@ Range_t *allocateArrayRange(int size)
         num_points: Número de pontos
         sizeLS: Tamanho do Sistema Linear
 */
-Range_t* calculateResidualVector(PointsRange_t *vpr, Range_t *a,long long int num_points, int sizeLS)
+void calculateResidualVector(Range_t * restrict rv, PointsRange_t *vpr, Range_t * restrict a,long long int num_points, int sizeLS)
 {
     int i,j;
-    Range_t *rv;
-    Range_t fx, res;
-
-    rv = allocateArrayRange(num_points);
+    // Range_t *rv;
+        // Range_t fx, res;
+    double power_s, power_l;
+    double pwr_s[sizeLS], pwr_l[sizeLS];
+    // rv = allocateArrayRange(num_points);
 
     for(i = 0; i < num_points; i++)
     {
-        fx.smallest = 0.0;
-        fx.largest = 0.0;
+
+        power_s = 1.0;
+        power_l = 1.0;
+        // fx.smallest = 0.0;
+        // fx.largest = 0.0;
+
+        for (int k = 0; k < sizeLS; k++)
+        {   
+            pwr_l[k] = power_l;
+            pwr_s[k] = power_s;
+            power_l *= vpr->x[i].largest;
+            power_s *= vpr->x[i].smallest;
+        }
+
         /* Calcula f(xi) */
         for(j = 0; j < sizeLS; j++)
         {
-            res = timeRange(a[j], powerRange(vpr->x[i], j)); //  multiplica coef a com xi^j
-            fx = addRange(fx, res); // acumulação do polinômio f(x)
+            rv[i].largest += a[j].largest*pwr_l[j];
+            rv[i].smallest += a[j].smallest*pwr_s[j];
+            // REMOVIDO
+            // res = timeRange(a[j], powerRange(vpr->x[i], j)); //  multiplica coef a com xi^j
+            // fx = addRange(fx, res); // acumulação do polinômio f(x)
         }
-        rv[i] = subtractRange(vpr->y[i], fx); // realiza a subtração
+        double smallest = rv[i].smallest;
+        double largest = rv[i].largest;
+        rv[i].largest = vpr->y[i].largest - smallest;
+        rv[i].smallest = vpr->y[i].smallest - largest;
+
+        // REMOVIDO
+        // rv[i] = subtractRange(vpr->y[i], fx); // realiza a subtração
     }
-    return rv;
+    // REMOVIDO
+    // return rv;
 }
 
 /*
