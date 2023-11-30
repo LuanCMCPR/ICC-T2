@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407955065 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000004,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,36584
+CPU_CLK_UNHALTED_CORE,FIXC1,28258
+CPU_CLK_UNHALTED_REF,FIXC2,25560
+L2_TRANS_ALL_REQUESTS,PMC0,3102
+L2_RQSTS_MISS,PMC1,1021
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],4.465422e-06,
+Runtime unhalted [s],8.291776e-06,
+Clock [MHz],3767.6837,
+CPI,0.7724,
+L2 request rate,0.0848,
+L2 miss rate,0.0279,
+L2 miss ratio,0.3291,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407955065 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000001,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,5274
+CPU_CLK_UNHALTED_CORE,FIXC1,11632
+CPU_CLK_UNHALTED_REF,FIXC2,10082
+L2_TRANS_ALL_REQUESTS,PMC0,1565
+L2_RQSTS_MISS,PMC1,462
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],7.165567e-07,
+Runtime unhalted [s],3.413191e-06,
+Clock [MHz],3931.8918,
+CPI,2.2055,
+L2 request rate,0.2967,
+L2 miss rate,0.0876,
+L2 miss ratio,0.2952,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407955065 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000003,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,25027
+CPU_CLK_UNHALTED_CORE,FIXC1,21330
+CPU_CLK_UNHALTED_REF,FIXC2,18886
+L2_TRANS_ALL_REQUESTS,PMC0,2192
+L2_RQSTS_MISS,PMC1,653
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.295222e-06,
+Runtime unhalted [s],6.258885e-06,
+Clock [MHz],3848.9718,
+CPI,0.8523,
+L2 request rate,0.0876,
+L2 miss rate,0.0261,
+L2 miss ratio,0.2979,

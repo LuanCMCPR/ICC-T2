@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407998001 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.050900,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,427109200
+CPU_CLK_UNHALTED_CORE,FIXC1,191046200
+CPU_CLK_UNHALTED_REF,FIXC2,171769900
+L2_TRANS_ALL_REQUESTS,PMC0,1753390
+L2_RQSTS_MISS,PMC1,670901
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0509,
+Runtime unhalted [s],0.0561,
+Clock [MHz],3790.4491,
+CPI,0.4473,
+L2 request rate,0.0041,
+L2 miss rate,0.0016,
+L2 miss ratio,0.3826,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407998001 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000003,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,21802
+CPU_CLK_UNHALTED_CORE,FIXC1,21795
+CPU_CLK_UNHALTED_REF,FIXC2,19738
+L2_TRANS_ALL_REQUESTS,PMC0,1586
+L2_RQSTS_MISS,PMC1,461
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.318055e-06,
+Runtime unhalted [s],6.395250e-06,
+Clock [MHz],3763.1633,
+CPI,0.9997,
+L2 request rate,0.0727,
+L2 miss rate,0.0211,
+L2 miss ratio,0.2907,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407998001 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.032765,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,271154100
+CPU_CLK_UNHALTED_CORE,FIXC1,119826900
+CPU_CLK_UNHALTED_REF,FIXC2,107782500
+L2_TRANS_ALL_REQUESTS,PMC0,220994
+L2_RQSTS_MISS,PMC1,71226
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0328,
+Runtime unhalted [s],0.0352,
+Clock [MHz],3788.8325,
+CPI,0.4419,
+L2 request rate,0.0008,
+L2 miss rate,0.0003,
+L2 miss ratio,0.3223,

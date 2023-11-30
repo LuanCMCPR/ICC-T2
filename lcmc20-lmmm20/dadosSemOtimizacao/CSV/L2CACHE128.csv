@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408057134 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000080,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,555878
+CPU_CLK_UNHALTED_CORE,FIXC1,282202
+CPU_CLK_UNHALTED_REF,FIXC2,253754
+L2_TRANS_ALL_REQUESTS,PMC0,4489
+L2_RQSTS_MISS,PMC1,1418
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0001,
+Runtime unhalted [s],0.0001,
+Clock [MHz],3790.1296,
+CPI,0.5077,
+L2 request rate,0.0081,
+L2 miss rate,0.0026,
+L2 miss ratio,0.3159,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408057134 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000003,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,21832
+CPU_CLK_UNHALTED_CORE,FIXC1,20978
+CPU_CLK_UNHALTED_REF,FIXC2,18886
+L2_TRANS_ALL_REQUESTS,PMC0,1426
+L2_RQSTS_MISS,PMC1,361
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.416609e-06,
+Runtime unhalted [s],6.155413e-06,
+Clock [MHz],3785.5672,
+CPI,0.9609,
+L2 request rate,0.0653,
+L2 miss rate,0.0165,
+L2 miss ratio,0.2532,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408057134 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000042,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,352432
+CPU_CLK_UNHALTED_CORE,FIXC1,166550
+CPU_CLK_UNHALTED_REF,FIXC2,149526
+L2_TRANS_ALL_REQUESTS,PMC0,2513
+L2_RQSTS_MISS,PMC1,685
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],4.173756e-05,
+Runtime unhalted [s],4.886949e-05,
+Clock [MHz],3796.0750,
+CPI,0.4726,
+L2 request rate,0.0071,
+L2 miss rate,0.0019,
+L2 miss ratio,0.2726,

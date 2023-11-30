@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408020818 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],5.104712,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,42710010000
+CPU_CLK_UNHALTED_CORE,FIXC1,19228440000
+CPU_CLK_UNHALTED_REF,FIXC2,17287480000
+L2_TRANS_ALL_REQUESTS,PMC0,222908200
+L2_RQSTS_MISS,PMC1,67305230
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],5.1047,
+Runtime unhalted [s],5.6421,
+Clock [MHz],3790.6580,
+CPI,0.4502,
+L2 request rate,0.0052,
+L2 miss rate,0.0016,
+L2 miss ratio,0.3019,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408020818 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000004,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,21802
+CPU_CLK_UNHALTED_CORE,FIXC1,23615
+CPU_CLK_UNHALTED_REF,FIXC2,21158
+L2_TRANS_ALL_REQUESTS,PMC0,1897
+L2_RQSTS_MISS,PMC1,569
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.818612e-06,
+Runtime unhalted [s],6.929242e-06,
+Clock [MHz],3803.7816,
+CPI,1.0832,
+L2 request rate,0.0870,
+L2 miss rate,0.0261,
+L2 miss ratio,0.2999,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408020818 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],3.199781,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,27115010000
+CPU_CLK_UNHALTED_CORE,FIXC1,11987050000
+CPU_CLK_UNHALTED_REF,FIXC2,10777600000
+L2_TRANS_ALL_REQUESTS,PMC0,34484440
+L2_RQSTS_MISS,PMC1,9827826
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.1998,
+Runtime unhalted [s],3.5173,
+Clock [MHz],3790.4650,
+CPI,0.4421,
+L2 request rate,0.0013,
+L2 miss rate,0.0004,
+L2 miss ratio,0.2850,

@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408038034 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.002079,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,17503190
+CPU_CLK_UNHALTED_CORE,FIXC1,7858936
+CPU_CLK_UNHALTED_REF,FIXC2,7064358
+L2_TRANS_ALL_REQUESTS,PMC0,47366
+L2_RQSTS_MISS,PMC1,5503
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0021,
+Runtime unhalted [s],0.0023,
+Clock [MHz],3791.3640,
+CPI,0.4490,
+L2 request rate,0.0027,
+L2 miss rate,0.0003,
+L2 miss ratio,0.1162,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408038034 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000004,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,21814
+CPU_CLK_UNHALTED_CORE,FIXC1,22125
+CPU_CLK_UNHALTED_REF,FIXC2,20164
+L2_TRANS_ALL_REQUESTS,PMC0,1750
+L2_RQSTS_MISS,PMC1,553
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.562742e-06,
+Runtime unhalted [s],6.492005e-06,
+Clock [MHz],3739.4784,
+CPI,1.0143,
+L2 request rate,0.0802,
+L2 miss rate,0.0254,
+L2 miss ratio,0.3160,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408038034 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.001391,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,11135000
+CPU_CLK_UNHALTED_CORE,FIXC1,4978363
+CPU_CLK_UNHALTED_REF,FIXC2,4478396
+L2_TRANS_ALL_REQUESTS,PMC0,14181
+L2_RQSTS_MISS,PMC1,4536
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0014,
+Runtime unhalted [s],0.0015,
+Clock [MHz],3788.5105,
+CPI,0.4471,
+L2 request rate,0.0013,
+L2 miss rate,0.0004,
+L2 miss ratio,0.3199,

@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407974365 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.014566,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,154005800
+CPU_CLK_UNHALTED_CORE,FIXC1,54699860
+CPU_CLK_UNHALTED_REF,FIXC2,49182840
+L2_TRANS_ALL_REQUESTS,PMC0,2141415
+L2_RQSTS_MISS,PMC1,673131
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0146,
+Runtime unhalted [s],0.0161,
+Clock [MHz],3790.2594,
+CPI,0.3552,
+L2 request rate,0.0139,
+L2 miss rate,0.0044,
+L2 miss ratio,0.3143,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407974365 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000001,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,5274
+CPU_CLK_UNHALTED_CORE,FIXC1,12756
+CPU_CLK_UNHALTED_REF,FIXC2,11360
+L2_TRANS_ALL_REQUESTS,PMC0,1619
+L2_RQSTS_MISS,PMC1,503
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],1.027005e-06,
+Runtime unhalted [s],3.742986e-06,
+Clock [MHz],3826.7712,
+CPI,2.4187,
+L2 request rate,0.3070,
+L2 miss rate,0.0954,
+L2 miss ratio,0.3107,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407974365 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.023785,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,106008600
+CPU_CLK_UNHALTED_CORE,FIXC1,61635580
+CPU_CLK_UNHALTED_REF,FIXC2,55435240
+L2_TRANS_ALL_REQUESTS,PMC0,2387036
+L2_RQSTS_MISS,PMC1,671394
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0238,
+Runtime unhalted [s],0.0181,
+Clock [MHz],3789.1507,
+CPI,0.5814,
+L2 request rate,0.0225,
+L2 miss rate,0.0063,
+L2 miss ratio,0.2813,

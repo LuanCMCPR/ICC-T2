@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407709258 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.005107,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,42719180
+CPU_CLK_UNHALTED_CORE,FIXC1,19144210
+CPU_CLK_UNHALTED_REF,FIXC2,17213100
+L2_TRANS_ALL_REQUESTS,PMC0,159283
+L2_RQSTS_MISS,PMC1,52980
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0051,
+Runtime unhalted [s],0.0056,
+Clock [MHz],3790.0147,
+CPI,0.4481,
+L2 request rate,0.0037,
+L2 miss rate,0.0012,
+L2 miss ratio,0.3326,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407709258 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000003,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,21820
+CPU_CLK_UNHALTED_CORE,FIXC1,21864
+CPU_CLK_UNHALTED_REF,FIXC2,19738
+L2_TRANS_ALL_REQUESTS,PMC0,1784
+L2_RQSTS_MISS,PMC1,566
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.475892e-06,
+Runtime unhalted [s],6.416040e-06,
+Clock [MHz],3774.7571,
+CPI,1.0020,
+L2 request rate,0.0818,
+L2 miss rate,0.0259,
+L2 miss ratio,0.3173,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407709258 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.003571,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,27149130
+CPU_CLK_UNHALTED_CORE,FIXC1,13312490
+CPU_CLK_UNHALTED_REF,FIXC2,11966770
+L2_TRANS_ALL_REQUESTS,PMC0,23336
+L2_RQSTS_MISS,PMC1,8097
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0036,
+Runtime unhalted [s],0.0039,
+Clock [MHz],3790.9223,
+CPI,0.4903,
+L2 request rate,0.0009,
+L2 miss rate,0.0003,
+L2 miss ratio,0.3470,

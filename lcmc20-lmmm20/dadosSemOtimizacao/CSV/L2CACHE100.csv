@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408029536 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000068,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,436291
+CPU_CLK_UNHALTED_CORE,FIXC1,232013
+CPU_CLK_UNHALTED_REF,FIXC2,208740
+L2_TRANS_ALL_REQUESTS,PMC0,4662
+L2_RQSTS_MISS,PMC1,1472
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0001,
+Runtime unhalted [s],0.0001,
+Clock [MHz],3788.0002,
+CPI,0.5318,
+L2 request rate,0.0107,
+L2 miss rate,0.0034,
+L2 miss ratio,0.3157,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408029536 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000003,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,21832
+CPU_CLK_UNHALTED_CORE,FIXC1,22195
+CPU_CLK_UNHALTED_REF,FIXC2,19738
+L2_TRANS_ALL_REQUESTS,PMC0,1539
+L2_RQSTS_MISS,PMC1,436
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.497592e-06,
+Runtime unhalted [s],6.512561e-06,
+Clock [MHz],3832.2634,
+CPI,1.0166,
+L2 request rate,0.0705,
+L2 miss rate,0.0200,
+L2 miss ratio,0.2833,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408029536 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000033,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,276097
+CPU_CLK_UNHALTED_CORE,FIXC1,134848
+CPU_CLK_UNHALTED_REF,FIXC2,121126
+L2_TRANS_ALL_REQUESTS,PMC0,2368
+L2_RQSTS_MISS,PMC1,666
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.339203e-05,
+Runtime unhalted [s],3.956773e-05,
+Clock [MHz],3794.1149,
+CPI,0.4884,
+L2 request rate,0.0086,
+L2 miss rate,0.0024,
+L2 miss ratio,0.2812,

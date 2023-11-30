@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408054876 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000060,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,282694
+CPU_CLK_UNHALTED_CORE,FIXC1,161976
+CPU_CLK_UNHALTED_REF,FIXC2,146686
+L2_TRANS_ALL_REQUESTS,PMC0,5183
+L2_RQSTS_MISS,PMC1,1771
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0001,
+Runtime unhalted [s],4.752740e-05,
+Clock [MHz],3763.2978,
+CPI,0.5730,
+L2 request rate,0.0183,
+L2 miss rate,0.0063,
+L2 miss ratio,0.3417,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408054876 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000004,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,21823
+CPU_CLK_UNHALTED_CORE,FIXC1,22101
+CPU_CLK_UNHALTED_REF,FIXC2,19880
+L2_TRANS_ALL_REQUESTS,PMC0,1767
+L2_RQSTS_MISS,PMC1,539
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.585623e-06,
+Runtime unhalted [s],6.484931e-06,
+Clock [MHz],3788.8039,
+CPI,1.0127,
+L2 request rate,0.0810,
+L2 miss rate,0.0247,
+L2 miss ratio,0.3050,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408054876 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000022,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,177859
+CPU_CLK_UNHALTED_CORE,FIXC1,90472
+CPU_CLK_UNHALTED_REF,FIXC2,81792
+L2_TRANS_ALL_REQUESTS,PMC0,2412
+L2_RQSTS_MISS,PMC1,731
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],2.163463e-05,
+Runtime unhalted [s],2.654652e-05,
+Clock [MHz],3769.7274,
+CPI,0.5087,
+L2 request rate,0.0136,
+L2 miss rate,0.0041,
+L2 miss ratio,0.3031,

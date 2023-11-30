@@ -51,6 +51,10 @@ SCRIPTS:
     USO: ./comparaTodas_geraEntradas.sh <ponto x que deseja comparar>
     Faz a comparação da versão otimizada com a versão não otitmizada de todas as métricas, utilizando as entradas do executavel
     gera entradas.
+    
+    gera_entrada
+    USO: ./gera_entrada <ponto>
+    Gera as entradas para serem usadas para o projeto
 
 BIBLIOTECAS:
 
@@ -91,7 +95,7 @@ DIRETÓRIO E ARQUIVOS:
 
     dadosOtimizados: Tabelas com os pontos x e y de cada métrica, usando o programa otimizado
 
-    dadosSemOtimizacação: Tabelas com os pontos x e y de cada métrica, usando o programa sem otimizacao
+    dadosSemOtimizacao: Tabelas com os pontos x e y de cada métrica, usando o programa sem otimizacao
     
     Relatório e Topologia: Diretório com o arquivo de topologia e o arquivo de relatório do projeto
 

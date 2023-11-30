@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408053426 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.003088,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,25635180
+CPU_CLK_UNHALTED_CORE,FIXC1,11501950
+CPU_CLK_UNHALTED_REF,FIXC2,10344130
+L2_TRANS_ALL_REQUESTS,PMC0,85885
+L2_RQSTS_MISS,PMC1,23913
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0031,
+Runtime unhalted [s],0.0034,
+Clock [MHz],3789.5173,
+CPI,0.4487,
+L2 request rate,0.0034,
+L2 miss rate,0.0009,
+L2 miss ratio,0.2784,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408053426 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000003,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,21823
+CPU_CLK_UNHALTED_CORE,FIXC1,21737
+CPU_CLK_UNHALTED_REF,FIXC2,19312
+L2_TRANS_ALL_REQUESTS,PMC0,1586
+L2_RQSTS_MISS,PMC1,467
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],3.473568e-06,
+Runtime unhalted [s],6.378128e-06,
+Clock [MHz],3836.0013,
+CPI,0.9961,
+L2 request rate,0.0727,
+L2 miss rate,0.0214,
+L2 miss ratio,0.2945,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.408053426 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.001991,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,16309160
+CPU_CLK_UNHALTED_CORE,FIXC1,7259041
+CPU_CLK_UNHALTED_REF,FIXC2,6529444
+L2_TRANS_ALL_REQUESTS,PMC0,18147
+L2_RQSTS_MISS,PMC1,5959
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],0.0020,
+Runtime unhalted [s],0.0021,
+Clock [MHz],3788.8677,
+CPI,0.4451,
+L2 request rate,0.0011,
+L2 miss rate,0.0004,
+L2 miss ratio,0.3284,

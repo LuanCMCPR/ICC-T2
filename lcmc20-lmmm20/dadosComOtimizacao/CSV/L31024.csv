@@ -1,0 +1,78 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407960769 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L3,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000016,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,163480
+CPU_CLK_UNHALTED_CORE,FIXC1,73207
+CPU_CLK_UNHALTED_REF,FIXC2,65746
+L2_LINES_IN_ALL,PMC0,1484
+L2_TRANS_L2_WB,PMC1,208
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L3,10
+Metric,Core 3,
+Runtime (RDTSC) [s],1.639924e-05,
+Runtime unhalted [s],2.148117e-05,
+Clock [MHz],3794.7036,
+CPI,0.4478,
+L3 load bandwidth [MBytes/s],5791.4879,
+L3 load data volume [GBytes],0.0001,
+L3 evict bandwidth [MBytes/s],811.7449,
+L3 evict data volume [GBytes],1.331200e-05,
+L3 bandwidth [MBytes/s],6603.2328,
+L3 data volume [GBytes],0.0001,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407960769 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L3,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000001,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,5288
+CPU_CLK_UNHALTED_CORE,FIXC1,12222
+CPU_CLK_UNHALTED_REF,FIXC2,11360
+L2_LINES_IN_ALL,PMC0,449
+L2_TRANS_L2_WB,PMC1,38
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L3,10
+Metric,Core 3,
+Runtime (RDTSC) [s],9.084606e-07,
+Runtime unhalted [s],3.586309e-06,
+Clock [MHz],3666.5578,
+CPI,2.3113,
+L3 load bandwidth [MBytes/s],31631.5314,
+L3 load data volume [GBytes],2.873600e-05,
+L3 evict bandwidth [MBytes/s],2677.0561,
+L3 evict data volume [GBytes],2.432000e-06,
+L3 bandwidth [MBytes/s],34308.5875,
+L3 data volume [GBytes],3.116800e-05,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407960769 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L3,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000016,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,112371
+CPU_CLK_UNHALTED_CORE,FIXC1,69569
+CPU_CLK_UNHALTED_REF,FIXC2,62764
+L2_LINES_IN_ALL,PMC0,1163
+L2_TRANS_L2_WB,PMC1,148
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L3,10
+Metric,Core 3,
+Runtime (RDTSC) [s],1.616508e-05,
+Runtime unhalted [s],2.041367e-05,
+Clock [MHz],3777.4588,
+CPI,0.6191,
+L3 load bandwidth [MBytes/s],4604.4931,
+L3 load data volume [GBytes],0.0001,
+L3 evict bandwidth [MBytes/s],585.9544,
+L3 evict data volume [GBytes],9.472000e-06,
+L3 bandwidth [MBytes/s],5190.4476,
+L3 data volume [GBytes],0.0001,

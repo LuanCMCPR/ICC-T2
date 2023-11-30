@@ -1,0 +1,69 @@
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407967789 GHz,
+TABLE,Region GERANDO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000014,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,144384
+CPU_CLK_UNHALTED_CORE,FIXC1,64564
+CPU_CLK_UNHALTED_REF,FIXC2,58362
+L2_TRANS_ALL_REQUESTS,PMC0,4450
+L2_RQSTS_MISS,PMC1,1433
+TABLE,Region GERANDO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],1.436129e-05,
+Runtime unhalted [s],1.894501e-05,
+Clock [MHz],3770.1249,
+CPI,0.4472,
+L2 request rate,0.0308,
+L2 miss rate,0.0099,
+L2 miss ratio,0.3220,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407967789 GHz,
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000001,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,5274
+CPU_CLK_UNHALTED_CORE,FIXC1,11192
+CPU_CLK_UNHALTED_REF,FIXC2,10082
+L2_TRANS_ALL_REQUESTS,PMC0,1564
+L2_RQSTS_MISS,PMC1,449
+TABLE,Region SOLUCAO_SISTEMA,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],7.009232e-07,
+Runtime unhalted [s],3.284069e-06,
+Clock [MHz],3783.1755,
+CPI,2.1221,
+L2 request rate,0.2965,
+L2 miss rate,0.0851,
+L2 miss ratio,0.2871,
+STRUCT,Info,3
+CPU name:,Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz,
+CPU type:,Intel Coffeelake processor,
+CPU clock:,3.407967789 GHz,
+TABLE,Region CALCULO_RESIDUO,Group 1 Raw,L2CACHE,5
+Region Info,Core 3,
+RDTSC Runtime [s],0.000014,
+call count,1,
+Event,Counter,Core 3
+INSTR_RETIRED_ANY,FIXC0,99227
+CPU_CLK_UNHALTED_CORE,FIXC1,62181
+CPU_CLK_UNHALTED_REF,FIXC2,55948
+L2_TRANS_ALL_REQUESTS,PMC0,4120
+L2_RQSTS_MISS,PMC1,1231
+TABLE,Region CALCULO_RESIDUO,Group 1 Metric,L2CACHE,7
+Metric,Core 3,
+Runtime (RDTSC) [s],1.419457e-05,
+Runtime unhalted [s],1.824577e-05,
+Clock [MHz],3787.6393,
+CPI,0.6267,
+L2 request rate,0.0415,
+L2 miss rate,0.0124,
+L2 miss ratio,0.2988,
