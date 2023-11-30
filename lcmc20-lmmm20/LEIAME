@@ -82,7 +82,6 @@ DIRETÓRIO E ARQUIVOS:
 
     semOtimizacao: Diretório do programa sem otimização
 
-    Entradas: Diretório com as entradas geradas pelo script geraEntradas.sh
 
     Scripts: Diretório onde estão todos os scripts utilizados para testes, geração de gráficos, 
              geração das entradas e geração de pontos para as métricas
@@ -93,6 +92,8 @@ DIRETÓRIO E ARQUIVOS:
     dadosOtimizados: Tabelas com os pontos x e y de cada métrica, usando o programa otimizado
 
     dadosSemOtimizacação: Tabelas com os pontos x e y de cada métrica, usando o programa sem otimizacao
+    
+    Relatório e Topologia: Diretório com o arquivo de topologia e o arquivo de relatório do projeto
 
 
 CÓDIGOS DE ERRO:

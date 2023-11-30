@@ -321,7 +321,6 @@ void classicEliminationWithPivot(LinearSystem_t *LS, unsigned int n)
             // REMOVIDO
             // LS->cm[k*n + j] = subtractRange(LS->cm[k*n + j], timeRange(m,LS->cm[i*n + j]));
             
-            // }
             LS->vit[k].smallest -= m.smallest * LS->vit[i].smallest;
             LS->vit[k].largest -= m.largest * LS->vit[i].largest;
             // REMOVIDO
@@ -355,7 +354,7 @@ void retroSubstitution(LinearSystem_t *LS, Range_t *x, int n)
         
         // REMOVIDO
         // x[i] = subtractRange(x[i], timeRange(LS->cm[i*n + j],x[j]));
-
+    
         /* Divide pelo coeficiente*/
         // if( (LS->cm[i][i].smallest != 0.0) && (LS->cm[i][i].largest != 0.0)) // Correção 2
             x[i] = divisionRange(x[i], LS->cm[i*n + i]);

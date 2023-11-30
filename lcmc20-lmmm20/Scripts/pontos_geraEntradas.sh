@@ -134,6 +134,5 @@ echo "powersave" > /sys/devices/system/cpu/cpufreq/policy$CORE/scaling_governor
 DIR=$2
 # Move arquivos para o diretório de saída
 mkdir -p $DIR
-mkdir -p "$DIR/CSV"
-mv *.csv $DIR/CSV
+rm *.csv
 mv *.dat $DIR
